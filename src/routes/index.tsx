@@ -226,28 +226,35 @@ function Home() {
             </Reveal>
           </div>
 
-          {/* Feature list + CTAs span the full section width. Six items per
-              row (6/5 split) fills the wide container more tightly than a
-              4/4/3 split; the shorter second row auto-centers. Font/icon
-              size step down on desktop only so the longer labels (e.g.
-              "Parent Portal & Communication") still fit on one line. */}
+          {/* Feature list + CTAs span the full section width. Split into an
+              explicit 6-item row and a 5-item row; each row uses
+              justify-between on desktop so items keep their natural width
+              and spread evenly edge-to-edge, instead of being forced into
+              equal-width columns that collided on the shorter row. */}
           <Reveal delay={200}>
-            <ul className="mt-8 grid grid-cols-2 gap-x-4 gap-y-2.5 sm:mt-9 lg:flex lg:flex-wrap lg:justify-center lg:gap-x-6 lg:gap-y-7">
-              {product.features.map((feature) => (
-                <li
-                  key={feature}
-                  className="flex items-start gap-1.5 text-sm text-navy-foreground/80 lg:w-[calc((100%-7.5rem)/6)] lg:gap-1 lg:text-xs lg:whitespace-nowrap xl:text-[13px]"
+            <div className="mt-8 flex flex-col gap-y-2.5 sm:mt-9 lg:gap-y-7">
+              {[product.features.slice(0, 6), product.features.slice(6)].map((row, rowIndex) => (
+                <ul
+                  key={rowIndex}
+                  className="grid grid-cols-2 gap-x-4 gap-y-2.5 lg:flex lg:flex-nowrap lg:justify-between"
                 >
-                  <Check className="mt-0.5 h-4 w-4 shrink-0 text-cyan lg:h-3.5 lg:w-3.5" aria-hidden="true" />
-                  {feature}
-                </li>
+                  {row.map((feature) => (
+                    <li
+                      key={feature}
+                      className="flex items-start gap-1.5 text-sm text-navy-foreground/80 lg:gap-1 lg:text-xs lg:whitespace-nowrap xl:text-[13px]"
+                    >
+                      <Check className="mt-0.5 h-4 w-4 shrink-0 text-cyan lg:h-3.5 lg:w-3.5" aria-hidden="true" />
+                      {feature}
+                    </li>
+                  ))}
+                </ul>
               ))}
-            </ul>
+            </div>
             <div className="mt-6 flex flex-wrap gap-3 sm:mt-9 lg:mt-12 lg:justify-center">
-              <Button asChild variant="brand" size="xl" className="lg:h-11 lg:px-6 lg:text-sm">
+              <Button asChild variant="brand" size="xl" className="lg:!h-[49px] lg:!px-6 lg:!py-0 lg:!text-sm">
                 <Link to="/products">Explore SchoolMSPro</Link>
               </Button>
-              <Button asChild variant="onDark" size="xl" className="lg:h-11 lg:px-6 lg:text-sm">
+              <Button asChild variant="onDark" size="xl" className="lg:!h-[49px] lg:!px-6 lg:!py-0 lg:!text-sm">
                 <Link to="/contact">Request a Demo</Link>
               </Button>
             </div>
