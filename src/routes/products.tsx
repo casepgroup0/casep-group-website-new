@@ -42,7 +42,7 @@ function ProductsPage() {
       </PageHero>
 
       {products.map((product) => (
-        <Section key={product.slug}>
+        <Section key={product.slug} className="lg:pb-10">
           <div className="grid items-start gap-12 lg:-mt-20 lg:grid-cols-2">
             <Reveal>
               <ProductSlideshow
