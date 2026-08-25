@@ -228,15 +228,17 @@ function Home() {
 
           {/* Feature list + CTAs span the full section width. Six items per
               row (6/5 split) fills the wide container more tightly than a
-              4/4/3 split; the shorter second row auto-centers. */}
+              4/4/3 split; the shorter second row auto-centers. Font/icon
+              size step down on desktop only so the longer labels (e.g.
+              "Parent Portal & Communication") still fit on one line. */}
           <Reveal delay={200}>
-            <ul className="mt-8 grid grid-cols-2 gap-x-4 gap-y-2.5 sm:mt-9 lg:flex lg:flex-wrap lg:justify-center lg:gap-x-8 lg:gap-y-8">
+            <ul className="mt-8 grid grid-cols-2 gap-x-4 gap-y-2.5 sm:mt-9 lg:flex lg:flex-wrap lg:justify-center lg:gap-x-6 lg:gap-y-7">
               {product.features.map((feature) => (
                 <li
                   key={feature}
-                  className="flex items-start gap-2 text-sm text-navy-foreground/80 lg:w-[calc((100%-7.5rem)/4)] xl:w-[calc((100%-10rem)/6)]"
+                  className="flex items-start gap-1.5 text-sm text-navy-foreground/80 lg:w-[calc((100%-7.5rem)/6)] lg:gap-1 lg:text-xs xl:text-[13px]"
                 >
-                  <Check className="mt-0.5 h-4 w-4 shrink-0 text-cyan" aria-hidden="true" />
+                  <Check className="mt-0.5 h-4 w-4 shrink-0 text-cyan lg:h-3.5 lg:w-3.5" aria-hidden="true" />
                   {feature}
                 </li>
               ))}
