@@ -251,10 +251,10 @@ function Home() {
               ))}
             </div>
             <div className="mt-6 flex flex-wrap gap-3 sm:mt-9 lg:mt-12 lg:justify-center">
-              <Button asChild variant="brand" size="xl" className="lg:!h-[42px] lg:!px-6 lg:!text-sm">
+              <Button asChild variant="brand" size="xl" className="lg:h-[42px] lg:px-6 lg:text-sm">
                 <Link to="/products">Explore SchoolMSPro</Link>
               </Button>
-              <Button asChild variant="onDark" size="xl" className="lg:!h-[42px] lg:!px-6 lg:!text-sm">
+              <Button asChild variant="onDark" size="xl" className="lg:h-[42px] lg:px-6 lg:text-sm">
                 <Link to="/contact">Request a Demo</Link>
               </Button>
             </div>
