@@ -190,7 +190,7 @@ function Home() {
         className="bg-photo-navy relative overflow-hidden py-14 text-navy-foreground sm:py-16 md:py-20 lg:pt-10 lg:pb-28"
         style={{ backgroundImage: `url(${productBg})` }}
       >
-        <div className="container-page relative z-10 grid items-center gap-8 md:grid-cols-2 md:gap-10 lg:gap-12">
+        <div className="container-page relative z-10 grid items-center gap-8 md:grid-cols-2 md:gap-10 lg:items-start lg:gap-12">
           <Reveal>
             <span className="inline-flex rounded-full bg-gradient-brand px-3 py-1 text-[0.7rem] font-bold uppercase tracking-wide text-primary-foreground">
               CASEP GROUP Product
