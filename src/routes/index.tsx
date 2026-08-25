@@ -236,7 +236,7 @@ function Home() {
               {product.features.map((feature) => (
                 <li
                   key={feature}
-                  className="flex items-start gap-1.5 text-sm text-navy-foreground/80 lg:w-[calc((100%-7.5rem)/6)] lg:gap-1 lg:text-xs xl:text-[13px]"
+                  className="flex items-start gap-1.5 text-sm text-navy-foreground/80 lg:w-[calc((100%-7.5rem)/6)] lg:gap-1 lg:text-xs lg:whitespace-nowrap xl:text-[13px]"
                 >
                   <Check className="mt-0.5 h-4 w-4 shrink-0 text-cyan lg:h-3.5 lg:w-3.5" aria-hidden="true" />
                   {feature}
@@ -244,10 +244,10 @@ function Home() {
               ))}
             </ul>
             <div className="mt-6 flex flex-wrap gap-3 sm:mt-9 lg:mt-12 lg:justify-center">
-              <Button asChild variant="brand" size="xl">
+              <Button asChild variant="brand" size="xl" className="lg:h-11 lg:px-6 lg:text-sm">
                 <Link to="/products">Explore SchoolMSPro</Link>
               </Button>
-              <Button asChild variant="onDark" size="xl">
+              <Button asChild variant="onDark" size="xl" className="lg:h-11 lg:px-6 lg:text-sm">
                 <Link to="/contact">Request a Demo</Link>
               </Button>
             </div>
