@@ -72,7 +72,7 @@ function ProductsPage() {
               <h3 className="mt-8 text-sm font-semibold uppercase tracking-wide text-muted-foreground">
                 Key features
               </h3>
-              <ul className="mt-4 grid gap-2 sm:grid-cols-2">
+              <ul className="mt-4 grid grid-cols-2 gap-x-4 gap-y-2">
                 {product.features.map((feature) => (
                   <li key={feature} className="flex items-start gap-2 text-sm">
                     <Check className="mt-0.5 h-4 w-4 shrink-0 text-primary" aria-hidden="true" />
