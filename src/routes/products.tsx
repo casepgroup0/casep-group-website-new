@@ -61,27 +61,27 @@ function ProductsPage() {
               />
             </Reveal>
             <Reveal delay={100}>
-              <span className="inline-flex rounded-full bg-accent px-3 py-1 text-xs font-bold uppercase tracking-wide text-primary lg:px-2.5 lg:py-0.5 lg:text-[0.65rem]">
+              <span className="inline-flex rounded-full bg-accent px-3 py-1 text-xs font-bold uppercase tracking-wide text-primary lg:px-2.5 lg:py-0.5 lg:text-[0.6rem]">
                 {product.status}
               </span>
-              <h2 className="mt-4 text-3xl font-bold md:text-4xl lg:mt-2 lg:text-2xl">
+              <h2 className="mt-4 text-3xl font-bold md:text-4xl lg:mt-2 lg:text-xl">
                 SchoolMSPro
               </h2>
-              <p className="mt-4 text-base leading-relaxed text-muted-foreground lg:mt-2 lg:text-sm">
+              <p className="mt-4 text-base leading-relaxed text-muted-foreground lg:mt-2 lg:text-xs lg:leading-relaxed">
                 {product.description}
               </p>
 
-              <h3 className="mt-8 text-sm font-semibold uppercase tracking-wide text-muted-foreground lg:mt-5 lg:text-xs">
+              <h3 className="mt-8 text-sm font-semibold uppercase tracking-wide text-muted-foreground lg:mt-4 lg:text-[11px]">
                 Key features
               </h3>
-              <ul className="mt-4 grid grid-cols-2 gap-x-4 gap-y-2 lg:mt-3 lg:gap-y-1.5">
+              <ul className="mt-4 grid grid-cols-2 gap-x-4 gap-y-2 lg:mt-2 lg:gap-y-1">
                 {product.features.map((feature) => (
                   <li
                     key={feature}
-                    className="flex items-start gap-2 text-sm lg:gap-1.5 lg:text-xs"
+                    className="flex items-start gap-2 text-sm lg:gap-1.5 lg:text-[11px]"
                   >
                     <Check
-                      className="mt-0.5 h-4 w-4 shrink-0 text-primary lg:h-3.5 lg:w-3.5"
+                      className="mt-0.5 h-4 w-4 shrink-0 text-primary lg:h-3 lg:w-3"
                       aria-hidden="true"
                     />
                     {feature}
@@ -89,12 +89,14 @@ function ProductsPage() {
                 ))}
               </ul>
 
-              <h3 className="mt-8 text-sm font-semibold uppercase tracking-wide text-muted-foreground lg:mt-5 lg:text-xs">
+              <h3 className="mt-8 text-sm font-semibold uppercase tracking-wide text-muted-foreground lg:mt-4 lg:text-[11px]">
                 Target users
               </h3>
-              <p className="mt-2 text-sm text-muted-foreground lg:text-xs">{product.audience}</p>
+              <p className="mt-2 text-sm text-muted-foreground lg:mt-1 lg:text-[11px]">
+                {product.audience}
+              </p>
 
-              <div className="mt-8 flex flex-wrap gap-3 lg:mt-5">
+              <div className="mt-8 flex flex-wrap gap-3 lg:hidden">
                 <Button asChild variant="brand" size="lg">
                   <Link to="/contact">Request a Demo</Link>
                 </Button>
@@ -103,6 +105,15 @@ function ProductsPage() {
                 </Button>
               </div>
             </Reveal>
+          </div>
+
+          <div className="mt-8 hidden justify-center gap-3 lg:flex">
+            <Button asChild variant="brand" size="lg">
+              <Link to="/contact">Request a Demo</Link>
+            </Button>
+            <Button asChild variant="softOutline" size="lg">
+              <Link to="/contact">Talk to CASEP GROUP</Link>
+            </Button>
           </div>
         </Section>
       ))}
