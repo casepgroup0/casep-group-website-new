@@ -190,27 +190,51 @@ function Home() {
         className="bg-photo-navy relative overflow-hidden py-14 text-navy-foreground sm:py-16 md:py-20 lg:pt-10 lg:pb-28"
         style={{ backgroundImage: `url(${productBg})` }}
       >
-        <div className="container-page relative z-10 grid items-center gap-8 md:grid-cols-2 md:gap-10 lg:items-start lg:gap-12">
-          <Reveal>
-            <span className="inline-flex rounded-full bg-gradient-brand px-3 py-1 text-[0.7rem] font-bold uppercase tracking-wide text-primary-foreground">
-              CASEP GROUP Product
-            </span>
-            <h2 className="mt-4 text-2xl font-bold leading-tight sm:mt-5 sm:text-3xl md:text-4xl lg:text-[2.75rem]">
-              School Management, Reimagined.
-            </h2>
-            <p className="mt-3 text-base font-medium text-cyan sm:text-lg">
-              A smarter way to manage modern schools.
-            </p>
-            <p className="mt-4 text-sm leading-relaxed text-navy-foreground/75 sm:mt-5 sm:text-base">
-              CASEP GROUP is developing a comprehensive school management platform that brings
-              academic administration, fees, communication, and reporting into one centralized
-              system.
-            </p>
-            <ul className="mt-6 grid grid-cols-2 gap-x-4 gap-y-2.5 sm:mt-7 lg:flex lg:flex-wrap lg:justify-center lg:gap-x-8 lg:gap-y-8">
+        <div className="container-page relative z-10">
+          <div className="grid items-center gap-8 md:grid-cols-2 md:gap-10 lg:items-start lg:gap-12">
+            <Reveal>
+              <span className="inline-flex rounded-full bg-gradient-brand px-3 py-1 text-[0.7rem] font-bold uppercase tracking-wide text-primary-foreground">
+                CASEP GROUP Product
+              </span>
+              <h2 className="mt-4 text-2xl font-bold leading-tight sm:mt-5 sm:text-3xl md:text-4xl lg:text-[2.75rem]">
+                School Management, Reimagined.
+              </h2>
+              <p className="mt-3 text-base font-medium text-cyan sm:text-lg">
+                A smarter way to manage modern schools.
+              </p>
+              <p className="mt-4 text-sm leading-relaxed text-navy-foreground/75 sm:mt-5 sm:text-base">
+                CASEP GROUP is developing a comprehensive school management platform that brings
+                academic administration, fees, communication, and reporting into one centralized
+                system.
+              </p>
+            </Reveal>
+            <Reveal delay={120}>
+              <ProductSlideshow
+                images={[
+                  {
+                    src: dashboardLight,
+                    alt: "SchoolMS Pro dashboard showing student totals, fee collection, and recent student records",
+                  },
+                  {
+                    src: dashboardDark,
+                    alt: "SchoolMS Pro dashboard in dark mode showing student totals, fee collection, and recent student records",
+                  },
+                ]}
+                intervalMs={35000}
+                className="w-full"
+              />
+            </Reveal>
+          </div>
+
+          {/* Feature list + CTAs span the full section width so each row of
+              four gets the whole container to breathe in, instead of being
+              squeezed into the half-width text column above. */}
+          <Reveal delay={200}>
+            <ul className="mt-8 grid grid-cols-2 gap-x-4 gap-y-2.5 sm:mt-9 lg:flex lg:flex-wrap lg:justify-center lg:gap-x-10 lg:gap-y-8">
               {product.features.map((feature) => (
                 <li
                   key={feature}
-                  className="flex items-start gap-2 text-sm text-navy-foreground/80 lg:w-[calc((100%-6rem)/4)]"
+                  className="flex items-start gap-2 text-sm text-navy-foreground/80 lg:w-[calc((100%-7.5rem)/4)]"
                 >
                   <Check className="mt-0.5 h-4 w-4 shrink-0 text-cyan" aria-hidden="true" />
                   {feature}
@@ -225,22 +249,6 @@ function Home() {
                 <Link to="/contact">Request a Demo</Link>
               </Button>
             </div>
-          </Reveal>
-          <Reveal delay={120}>
-            <ProductSlideshow
-              images={[
-                {
-                  src: dashboardLight,
-                  alt: "SchoolMS Pro dashboard showing student totals, fee collection, and recent student records",
-                },
-                {
-                  src: dashboardDark,
-                  alt: "SchoolMS Pro dashboard in dark mode showing student totals, fee collection, and recent student records",
-                },
-              ]}
-              intervalMs={35000}
-              className="w-full"
-            />
           </Reveal>
         </div>
       </section>
