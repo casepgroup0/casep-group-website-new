@@ -187,7 +187,7 @@ function Home() {
 
       {/* Featured product */}
       <section
-        className="bg-photo-navy relative overflow-hidden py-14 text-navy-foreground sm:py-16 md:py-20 lg:pt-10 lg:pb-28"
+        className="bg-photo-navy relative overflow-hidden py-14 text-navy-foreground sm:py-16 md:py-20 lg:pt-10 lg:pb-14"
         style={{ backgroundImage: `url(${productBg})` }}
       >
         <div className="container-page relative z-10">
