@@ -219,7 +219,7 @@ function Home() {
             </ul>
             <div className="mt-6 flex flex-wrap gap-3 sm:mt-9">
               <Button asChild variant="brand" size="xl">
-                <Link to="/products">Explore School Management</Link>
+                <Link to="/products">Explore SchoolMSPro</Link>
               </Button>
               <Button asChild variant="onDark" size="xl">
                 <Link to="/contact">Request a Demo</Link>

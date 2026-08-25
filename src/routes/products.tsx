@@ -2,10 +2,12 @@ import { createFileRoute, Link } from "@tanstack/react-router";
 import { Check } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Reveal } from "@/components/site/Reveal";
+import { ProductSlideshow } from "@/components/site/ProductSlideshow";
 import { Section, SectionHeading } from "@/components/site/Section";
 import { CTASection, PageHero } from "@/components/site/blocks";
 import { products } from "@/data/site";
-import dashboardImage from "@/assets/school-dashboard.jpg";
+import dashboardLight from "@/assets/dashboard-light.png";
+import dashboardDark from "@/assets/dashboard-dark.png";
 
 const title = "Products — School Management System | CASEP GROUP";
 const description =
@@ -43,13 +45,19 @@ function ProductsPage() {
         <Section key={product.slug}>
           <div className="grid items-start gap-12 lg:grid-cols-2">
             <Reveal>
-              <img
-                src={dashboardImage}
-                alt={`${product.name} dashboard preview showing student records and fee collection`}
-                width={1600}
-                height={1008}
-                loading="lazy"
-                className="w-full rounded-2xl border border-border shadow-lift"
+              <ProductSlideshow
+                images={[
+                  {
+                    src: dashboardLight,
+                    alt: `${product.name} dashboard showing student totals, fee collection, and recent student records`,
+                  },
+                  {
+                    src: dashboardDark,
+                    alt: `${product.name} dashboard in dark mode showing student totals, fee collection, and recent student records`,
+                  },
+                ]}
+                intervalMs={35000}
+                className="w-full"
               />
             </Reveal>
             <Reveal delay={100}>
