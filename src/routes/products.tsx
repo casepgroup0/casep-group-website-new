@@ -43,7 +43,7 @@ function ProductsPage() {
 
       {products.map((product) => (
         <Section key={product.slug}>
-          <div className="grid items-start gap-12 lg:grid-cols-2">
+          <div className="grid items-start gap-12 lg:-mt-20 lg:grid-cols-2">
             <Reveal>
               <ProductSlideshow
                 images={[
@@ -61,32 +61,40 @@ function ProductsPage() {
               />
             </Reveal>
             <Reveal delay={100}>
-              <span className="inline-flex rounded-full bg-accent px-3 py-1 text-xs font-bold uppercase tracking-wide text-primary">
+              <span className="inline-flex rounded-full bg-accent px-3 py-1 text-xs font-bold uppercase tracking-wide text-primary lg:px-2.5 lg:py-0.5 lg:text-[0.65rem]">
                 {product.status}
               </span>
-              <h2 className="mt-4 text-3xl font-bold md:text-4xl">{product.name}</h2>
-              <p className="mt-4 text-base leading-relaxed text-muted-foreground">
+              <h2 className="mt-4 text-3xl font-bold md:text-4xl lg:mt-2 lg:text-2xl">
+                SchoolMSPro
+              </h2>
+              <p className="mt-4 text-base leading-relaxed text-muted-foreground lg:mt-2 lg:text-sm">
                 {product.description}
               </p>
 
-              <h3 className="mt-8 text-sm font-semibold uppercase tracking-wide text-muted-foreground">
+              <h3 className="mt-8 text-sm font-semibold uppercase tracking-wide text-muted-foreground lg:mt-5 lg:text-xs">
                 Key features
               </h3>
-              <ul className="mt-4 grid grid-cols-2 gap-x-4 gap-y-2">
+              <ul className="mt-4 grid grid-cols-2 gap-x-4 gap-y-2 lg:mt-3 lg:gap-y-1.5">
                 {product.features.map((feature) => (
-                  <li key={feature} className="flex items-start gap-2 text-sm">
-                    <Check className="mt-0.5 h-4 w-4 shrink-0 text-primary" aria-hidden="true" />
+                  <li
+                    key={feature}
+                    className="flex items-start gap-2 text-sm lg:gap-1.5 lg:text-xs"
+                  >
+                    <Check
+                      className="mt-0.5 h-4 w-4 shrink-0 text-primary lg:h-3.5 lg:w-3.5"
+                      aria-hidden="true"
+                    />
                     {feature}
                   </li>
                 ))}
               </ul>
 
-              <h3 className="mt-8 text-sm font-semibold uppercase tracking-wide text-muted-foreground">
+              <h3 className="mt-8 text-sm font-semibold uppercase tracking-wide text-muted-foreground lg:mt-5 lg:text-xs">
                 Target users
               </h3>
-              <p className="mt-2 text-sm text-muted-foreground">{product.audience}</p>
+              <p className="mt-2 text-sm text-muted-foreground lg:text-xs">{product.audience}</p>
 
-              <div className="mt-8 flex flex-wrap gap-3">
+              <div className="mt-8 flex flex-wrap gap-3 lg:mt-5">
                 <Button asChild variant="brand" size="lg">
                   <Link to="/contact">Request a Demo</Link>
                 </Button>
