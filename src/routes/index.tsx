@@ -226,15 +226,15 @@ function Home() {
             </Reveal>
           </div>
 
-          {/* Feature list + CTAs span the full section width so each row of
-              four gets the whole container to breathe in, instead of being
-              squeezed into the half-width text column above. */}
+          {/* Feature list + CTAs span the full section width. Six items per
+              row (6/5 split) fills the wide container more tightly than a
+              4/4/3 split; the shorter second row auto-centers. */}
           <Reveal delay={200}>
-            <ul className="mt-8 grid grid-cols-2 gap-x-4 gap-y-2.5 sm:mt-9 lg:flex lg:flex-wrap lg:justify-center lg:gap-x-10 lg:gap-y-8">
+            <ul className="mt-8 grid grid-cols-2 gap-x-4 gap-y-2.5 sm:mt-9 lg:flex lg:flex-wrap lg:justify-center lg:gap-x-8 lg:gap-y-8">
               {product.features.map((feature) => (
                 <li
                   key={feature}
-                  className="flex items-start gap-2 text-sm text-navy-foreground/80 lg:w-[calc((100%-7.5rem)/4)]"
+                  className="flex items-start gap-2 text-sm text-navy-foreground/80 lg:w-[calc((100%-7.5rem)/4)] xl:w-[calc((100%-10rem)/6)]"
                 >
                   <Check className="mt-0.5 h-4 w-4 shrink-0 text-cyan" aria-hidden="true" />
                   {feature}
