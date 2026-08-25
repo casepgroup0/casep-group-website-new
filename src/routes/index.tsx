@@ -187,7 +187,7 @@ function Home() {
 
       {/* Featured product */}
       <section
-        className="bg-photo-navy relative overflow-hidden py-14 text-navy-foreground sm:py-16 md:py-20 lg:py-28"
+        className="bg-photo-navy relative overflow-hidden py-14 text-navy-foreground sm:py-16 md:py-20 lg:pt-10 lg:pb-28"
         style={{ backgroundImage: `url(${productBg})` }}
       >
         <div className="container-page relative z-10 grid items-center gap-8 md:grid-cols-2 md:gap-10 lg:gap-12">
@@ -206,18 +206,18 @@ function Home() {
               academic administration, fees, communication, and reporting into one centralized
               system.
             </p>
-            <ul className="mt-6 grid grid-cols-2 gap-x-4 gap-y-2.5 sm:mt-7">
+            <ul className="mt-6 grid grid-cols-2 gap-x-4 gap-y-2.5 sm:mt-7 lg:flex lg:flex-wrap lg:justify-center lg:gap-x-6 lg:gap-y-3">
               {product.features.map((feature) => (
                 <li
                   key={feature}
-                  className="flex items-start gap-2 text-sm text-navy-foreground/80"
+                  className="flex items-start gap-2 text-sm text-navy-foreground/80 lg:w-[calc((100%-4.5rem)/4)]"
                 >
                   <Check className="mt-0.5 h-4 w-4 shrink-0 text-cyan" aria-hidden="true" />
                   {feature}
                 </li>
               ))}
             </ul>
-            <div className="mt-6 flex flex-wrap gap-3 sm:mt-9">
+            <div className="mt-6 flex flex-wrap gap-3 sm:mt-9 lg:justify-center">
               <Button asChild variant="brand" size="xl">
                 <Link to="/products">Explore SchoolMSPro</Link>
               </Button>

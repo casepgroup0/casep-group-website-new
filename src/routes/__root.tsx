@@ -12,6 +12,7 @@ import { useEffect, type ReactNode } from "react";
 import appCss from "../styles.css?url";
 import { Navbar } from "@/components/site/Navbar";
 import { Footer } from "@/components/site/Footer";
+import { BackButton } from "@/components/site/BackButton";
 import { reportLovableError } from "../lib/lovable-error-reporting";
 import siteBackdrop from "@/assets/bg-atmosphere.jpg";
 
@@ -157,6 +158,7 @@ function RootComponent() {
           <Outlet />
         </main>
         <Footer />
+        <BackButton />
       </div>
     </QueryClientProvider>
   );
