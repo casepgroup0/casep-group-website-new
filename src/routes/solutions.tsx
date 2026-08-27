@@ -35,9 +35,6 @@ function SolutionsPage() {
         title="Solutions That Solve Business Problems."
         description="We start with the operational problem — slow admissions, manual invoicing, scattered records — and design the system that removes it."
       >
-        <Button asChild variant="brand" size="xl">
-          <Link to="/contact">Discuss Your Requirements</Link>
-        </Button>
         <Button asChild variant="onDark" size="xl">
           <Link to="/products">See Our Products</Link>
         </Button>

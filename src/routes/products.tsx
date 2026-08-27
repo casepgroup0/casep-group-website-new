@@ -97,9 +97,6 @@ function ProductsPage() {
               </p>
 
               <div className="mt-8 flex flex-wrap gap-3 lg:hidden">
-                <Button asChild variant="brand" size="lg">
-                  <Link to="/contact">Request a Demo</Link>
-                </Button>
                 <Button asChild variant="softOutline" size="lg">
                   <Link to="/contact">Talk to CASEP GROUP</Link>
                 </Button>
@@ -108,9 +105,6 @@ function ProductsPage() {
           </div>
 
           <div className="mt-8 hidden justify-center gap-3 lg:flex">
-            <Button asChild variant="brand" size="lg">
-              <Link to="/contact">Request a Demo</Link>
-            </Button>
             <Button asChild variant="softOutline" size="lg">
               <Link to="/contact">Talk to CASEP GROUP</Link>
             </Button>

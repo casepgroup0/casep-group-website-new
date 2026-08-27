@@ -4,7 +4,6 @@ import { Clock, Mail, MapPin, Phone } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import { Textarea } from "@/components/ui/textarea";
 import { Reveal } from "@/components/site/Reveal";
 import { Section } from "@/components/site/Section";
 import { PageHero } from "@/components/site/blocks";
@@ -35,19 +34,10 @@ const serviceOptions = [
   "Other",
 ];
 
-const budgetOptions = [
-  "Not yet defined",
-  "Under GHS 20,000",
-  "GHS 20,000 – GHS 60,000",
-  "GHS 60,000 – GHS 150,000",
-  "GHS 150,000+",
-];
-
 type Errors = {
   fullName?: string;
   email?: string;
-  service?: string;
-  message?: string;
+  interest?: string;
 };
 
 function ContactPage() {
@@ -61,13 +51,12 @@ function ContactPage() {
 
     const name = String(form.get("fullName") ?? "").trim();
     const email = String(form.get("email") ?? "").trim();
-    const service = String(form.get("service") ?? "");
-    const message = String(form.get("message") ?? "").trim();
+    const interest = String(form.get("interest") ?? "");
 
-    if (name.length < 2) next.fullName = "Please enter your full name.";
-    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) next.email = "Please enter a valid email address.";
-    if (!service) next.service = "Please select the service you need.";
-    if (message.length < 20) next.message = "Please describe your project in at least 20 characters.";
+    if (name.length < 2) next.fullName = "Please enter your name.";
+    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email))
+      next.email = "Please enter a valid email address.";
+    if (!interest) next.interest = "Please select what you're interested in.";
 
     setErrors(next);
     if (Object.keys(next).length > 0) return;
@@ -108,44 +97,38 @@ function ContactPage() {
               ) : null}
 
               <div className="grid gap-5 sm:grid-cols-2">
-                <Field id="fullName" label="Full Name" error={errors.fullName} required>
+                <Field id="fullName" label="Name" error={errors.fullName} required>
                   <Input id="fullName" name="fullName" autoComplete="name" required />
                 </Field>
-                <Field id="organization" label="Organization">
+                <Field id="organization" label="Organization / Company">
                   <Input id="organization" name="organization" autoComplete="organization" />
                 </Field>
-                <Field id="email" label="Email Address" error={errors.email} required>
+                <Field id="email" label="Email" error={errors.email} required>
                   <Input id="email" name="email" type="email" autoComplete="email" required />
                 </Field>
-                <Field id="phone" label="Phone Number">
+                <Field id="phone" label="Phone">
                   <Input id="phone" name="phone" type="tel" autoComplete="tel" />
                 </Field>
-                <Field id="service" label="Service Needed" error={errors.service} required>
+              </div>
+
+              <div className="mt-5">
+                <Field
+                  id="interest"
+                  label="What You're Interested In"
+                  error={errors.interest}
+                  required
+                >
                   <select
-                    id="service"
-                    name="service"
+                    id="interest"
+                    name="interest"
                     required
                     defaultValue=""
                     className="flex h-9 w-full rounded-md border border-input bg-transparent px-3 py-1 text-sm shadow-sm transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring"
                   >
                     <option value="" disabled>
-                      Select a service
+                      Select an option
                     </option>
                     {serviceOptions.map((option) => (
-                      <option key={option} value={option}>
-                        {option}
-                      </option>
-                    ))}
-                  </select>
-                </Field>
-                <Field id="budget" label="Budget Range">
-                  <select
-                    id="budget"
-                    name="budget"
-                    defaultValue={budgetOptions[0]}
-                    className="flex h-9 w-full rounded-md border border-input bg-transparent px-3 py-1 text-sm shadow-sm transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring"
-                  >
-                    {budgetOptions.map((option) => (
                       <option key={option} value={option}>
                         {option}
                       </option>
@@ -155,15 +138,20 @@ function ContactPage() {
               </div>
 
               <div className="mt-5">
-                <Field id="message" label="Project Description" error={errors.message} required>
-                  <Textarea id="message" name="message" rows={6} required />
+                <Field id="preferredDateTime" label="Preferred Date &amp; Time for Demo">
+                  <Input id="preferredDateTime" name="preferredDateTime" type="datetime-local" />
                 </Field>
               </div>
 
               {/* Honeypot field for basic spam protection */}
               <div className="hidden" aria-hidden="true">
                 <label htmlFor="company-website">Leave this field empty</label>
-                <input id="company-website" name="companyWebsite" tabIndex={-1} autoComplete="off" />
+                <input
+                  id="company-website"
+                  name="companyWebsite"
+                  tabIndex={-1}
+                  autoComplete="off"
+                />
               </div>
 
               <Button
@@ -190,7 +178,10 @@ function ContactPage() {
                 </li>
                 <li className="flex items-start gap-3">
                   <Phone className="mt-0.5 h-4 w-4 text-primary" aria-hidden="true" />
-                  <a href={`tel:${company.phone.replace(/\s/g, "")}`} className="hover:text-primary">
+                  <a
+                    href={`tel:${company.phone.replace(/\s/g, "")}`}
+                    className="hover:text-primary"
+                  >
                     {company.phone}
                   </a>
                 </li>

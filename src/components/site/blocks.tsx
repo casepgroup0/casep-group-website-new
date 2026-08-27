@@ -458,9 +458,6 @@ export function CTASection({
                 <Button asChild variant="brand" size="default">
                   <Link to="/contact">Start a Project</Link>
                 </Button>
-                <Button asChild variant="onDark" size="default">
-                  <Link to="/contact">Talk to CASEP GROUP</Link>
-                </Button>
               </div>
             </div>
           </div>
