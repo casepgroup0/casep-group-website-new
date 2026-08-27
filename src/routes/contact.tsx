@@ -8,7 +8,7 @@ import { Textarea } from "@/components/ui/textarea";
 import { Reveal } from "@/components/site/Reveal";
 import { Section } from "@/components/site/Section";
 import { PageHero } from "@/components/site/blocks";
-import { company, socialLinks } from "@/data/site";
+import { company, services, socialLinks } from "@/data/site";
 
 const title = "Contact CASEP GROUP — Start a Technology Project";
 const description =
@@ -30,22 +30,17 @@ export const Route = createFileRoute("/contact")({
 });
 
 const serviceOptions = [
-  "Software Development",
-  "Website Development",
-  "Cloud Solutions",
-  "Business Automation",
-  "Digital Transformation",
-  "Technology Consulting",
+  ...services.map((service) => service.title),
   "School Management System",
   "Other",
 ];
 
 const budgetOptions = [
   "Not yet defined",
-  "Under $2,000",
-  "$2,000 – $5,000",
-  "$5,000 – $15,000",
-  "$15,000+",
+  "Under GHS 20,000",
+  "GHS 20,000 – GHS 60,000",
+  "GHS 60,000 – GHS 150,000",
+  "GHS 150,000+",
 ];
 
 type Errors = {
