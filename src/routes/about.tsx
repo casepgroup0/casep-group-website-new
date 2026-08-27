@@ -107,8 +107,8 @@ function About() {
             <img
               src={founderImage}
               alt="Caleb Agyei Sey, Founder of CASEP GROUP"
-              width={715}
-              height={1018}
+              width={517}
+              height={667}
               loading="lazy"
               className="w-full rounded-3xl border border-border object-cover shadow-lift"
             />
