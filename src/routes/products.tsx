@@ -37,7 +37,9 @@ function ProductsPage() {
         description="Technology products designed to solve problems we see repeatedly across schools, businesses, and institutions."
       >
         <Button asChild variant="brand" size="xl">
-          <Link to="/contact">Request a Demo</Link>
+          <Link to="/contact" search={{ type: "demo" }}>
+            Request a Demo
+          </Link>
         </Button>
       </PageHero>
 
@@ -98,7 +100,9 @@ function ProductsPage() {
 
               <div className="mt-8 flex flex-wrap gap-3 lg:hidden">
                 <Button asChild variant="softOutline" size="lg">
-                  <Link to="/contact">Talk to CASEP GROUP</Link>
+                  <Link to="/contact" search={{ type: "demo" }}>
+                    Talk to CASEP GROUP
+                  </Link>
                 </Button>
               </div>
             </Reveal>
@@ -106,7 +110,9 @@ function ProductsPage() {
 
           <div className="mt-8 hidden justify-center gap-3 lg:flex">
             <Button asChild variant="softOutline" size="lg">
-              <Link to="/contact">Talk to CASEP GROUP</Link>
+              <Link to="/contact" search={{ type: "demo" }}>
+                Talk to CASEP GROUP
+              </Link>
             </Button>
           </div>
         </Section>

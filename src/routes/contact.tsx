@@ -14,6 +14,9 @@ const description =
   "Talk to CASEP GROUP about software development, cloud solutions, business automation, digital transformation, or the school management system.";
 
 export const Route = createFileRoute("/contact")({
+  validateSearch: (search: Record<string, unknown>): { type: "inquiry" | "demo" } => ({
+    type: search["type"] === "demo" ? "demo" : "inquiry",
+  }),
   head: () => ({
     meta: [
       { title },
@@ -34,13 +37,24 @@ const serviceOptions = [
   "Other",
 ];
 
+const budgetOptions = [
+  "Under GHS 5,000",
+  "GHS 5,000 – GHS 15,000",
+  "GHS 15,000 – GHS 50,000",
+  "GHS 50,000+",
+  "Not sure yet",
+];
+
 type Errors = {
   fullName?: string;
   email?: string;
   interest?: string;
+  service?: string;
 };
 
 function ContactPage() {
+  const { type } = Route.useSearch();
+  const isDemo = type === "demo";
   const [errors, setErrors] = useState<Errors>({});
   const [status, setStatus] = useState<"idle" | "loading" | "sent">("idle");
 
@@ -51,12 +65,18 @@ function ContactPage() {
 
     const name = String(form.get("fullName") ?? "").trim();
     const email = String(form.get("email") ?? "").trim();
-    const interest = String(form.get("interest") ?? "");
 
     if (name.length < 2) next.fullName = "Please enter your name.";
     if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email))
       next.email = "Please enter a valid email address.";
-    if (!interest) next.interest = "Please select what you're interested in.";
+
+    if (isDemo) {
+      const interest = String(form.get("interest") ?? "");
+      if (!interest) next.interest = "Please select what you're interested in.";
+    } else {
+      const neededService = String(form.get("neededService") ?? "");
+      if (!neededService) next.service = "Please select the service you need.";
+    }
 
     setErrors(next);
     if (Object.keys(next).length > 0) return;
@@ -100,48 +120,111 @@ function ContactPage() {
                 <Field id="fullName" label="Name" error={errors.fullName} required>
                   <Input id="fullName" name="fullName" autoComplete="name" required />
                 </Field>
-                <Field id="organization" label="Organization / Company">
-                  <Input id="organization" name="organization" autoComplete="organization" />
-                </Field>
                 <Field id="email" label="Email" error={errors.email} required>
                   <Input id="email" name="email" type="email" autoComplete="email" required />
                 </Field>
                 <Field id="phone" label="Phone">
                   <Input id="phone" name="phone" type="tel" autoComplete="tel" />
                 </Field>
-              </div>
-
-              <div className="mt-5">
-                <Field
-                  id="interest"
-                  label="What You're Interested In"
-                  error={errors.interest}
-                  required
-                >
-                  <select
-                    id="interest"
-                    name="interest"
-                    required
-                    defaultValue=""
-                    className="flex h-9 w-full rounded-md border border-input bg-transparent px-3 py-1 text-sm shadow-sm transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring"
-                  >
-                    <option value="" disabled>
-                      Select an option
-                    </option>
-                    {serviceOptions.map((option) => (
-                      <option key={option} value={option}>
-                        {option}
-                      </option>
-                    ))}
-                  </select>
+                <Field id="organization" label="Organization / Company">
+                  <Input id="organization" name="organization" autoComplete="organization" />
                 </Field>
               </div>
 
-              <div className="mt-5">
-                <Field id="preferredDateTime" label="Preferred Date &amp; Time for Demo">
-                  <Input id="preferredDateTime" name="preferredDateTime" type="datetime-local" />
-                </Field>
-              </div>
+              {isDemo ? (
+                <>
+                  <div className="mt-5">
+                    <Field
+                      id="interest"
+                      label="What You're Interested In"
+                      error={errors.interest}
+                      required
+                    >
+                      <select
+                        id="interest"
+                        name="interest"
+                        required
+                        defaultValue=""
+                        className="flex h-9 w-full rounded-md border border-input bg-transparent px-3 py-1 text-sm shadow-sm transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring"
+                      >
+                        <option value="" disabled>
+                          Select an option
+                        </option>
+                        {serviceOptions.map((option) => (
+                          <option key={option} value={option}>
+                            {option}
+                          </option>
+                        ))}
+                      </select>
+                    </Field>
+                  </div>
+
+                  <div className="mt-5">
+                    <Field id="preferredDateTime" label="Preferred Date &amp; Time for Demo">
+                      <Input id="preferredDateTime" name="preferredDateTime" type="datetime-local" />
+                    </Field>
+                  </div>
+                </>
+              ) : (
+                <>
+                  <div className="mt-5">
+                    <Field
+                      id="neededService"
+                      label="Needed Service"
+                      error={errors.service}
+                      required
+                    >
+                      <select
+                        id="neededService"
+                        name="neededService"
+                        required
+                        defaultValue=""
+                        className="flex h-9 w-full rounded-md border border-input bg-transparent px-3 py-1 text-sm shadow-sm transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring"
+                      >
+                        <option value="" disabled>
+                          Select an option
+                        </option>
+                        {serviceOptions.map((option) => (
+                          <option key={option} value={option}>
+                            {option}
+                          </option>
+                        ))}
+                      </select>
+                    </Field>
+                  </div>
+
+                  <div className="mt-5">
+                    <Field id="budget" label="Budget Range">
+                      <select
+                        id="budget"
+                        name="budget"
+                        defaultValue=""
+                        className="flex h-9 w-full rounded-md border border-input bg-transparent px-3 py-1 text-sm shadow-sm transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring"
+                      >
+                        <option value="" disabled>
+                          Select a range
+                        </option>
+                        {budgetOptions.map((option) => (
+                          <option key={option} value={option}>
+                            {option}
+                          </option>
+                        ))}
+                      </select>
+                    </Field>
+                  </div>
+
+                  <div className="mt-5">
+                    <Field id="description" label="Project Description">
+                      <textarea
+                        id="description"
+                        name="description"
+                        rows={4}
+                        className="flex w-full rounded-md border border-input bg-transparent px-3 py-2 text-sm shadow-sm transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring"
+                      />
+                    </Field>
+                  </div>
+                </>
+              )}
 
               {/* Honeypot field for basic spam protection */}
               <div className="hidden" aria-hidden="true">
@@ -161,7 +244,7 @@ function ContactPage() {
                 className="mt-7 w-full sm:w-auto"
                 disabled={status === "loading"}
               >
-                {status === "loading" ? "Sending…" : "Send Inquiry"}
+                {status === "loading" ? "Sending…" : isDemo ? "Request Demo" : "Send Inquiry"}
               </Button>
             </form>
           </Reveal>

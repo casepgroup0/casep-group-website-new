@@ -132,6 +132,7 @@ export function SolutionsGrid({ tone = "default" }: { tone?: "default" | "surfac
         <Reveal delay={solutions.length * 60} className="col-span-5 sm:col-span-1">
           <Link
             to="/contact"
+            search={{ type: "inquiry" }}
             className="flex h-[60px] w-full items-center justify-between gap-2 rounded-lg border border-primary/30 bg-accent/60 px-3 sm:hidden"
           >
             <span className="text-[11px] font-semibold leading-tight text-foreground">
@@ -147,7 +148,9 @@ export function SolutionsGrid({ tone = "default" }: { tone?: "default" | "surfac
               Tell us what is slowing your organization down and we will map the options.
             </p>
             <Button asChild variant="brand" size="lg" className="mt-6 self-start">
-              <Link to="/contact">Discuss Your Requirements</Link>
+              <Link to="/contact" search={{ type: "inquiry" }}>
+                Discuss Your Requirements
+              </Link>
             </Button>
           </div>
         </Reveal>
@@ -456,7 +459,9 @@ export function CTASection({
               </p>
               <div className="mt-8 flex flex-wrap gap-3">
                 <Button asChild variant="brand" size="default">
-                  <Link to="/contact">Start a Project</Link>
+                  <Link to="/contact" search={{ type: "inquiry" }}>
+                    Start a Project
+                  </Link>
                 </Button>
               </div>
             </div>

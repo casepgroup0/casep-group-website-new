@@ -255,7 +255,7 @@ function Home() {
                 <Link to="/products">Explore SchoolMSPro</Link>
               </Button>
               <Button asChild variant="onDark" size="xl" className="lg:h-[42px] lg:px-6 lg:text-sm">
-                <Link to="/contact">Request a Demo</Link>
+                <Link to="/contact" search={{ type: "demo" }}>Request a Demo</Link>
               </Button>
             </div>
           </Reveal>
