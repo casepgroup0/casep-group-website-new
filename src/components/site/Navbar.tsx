@@ -72,7 +72,7 @@ export function Navbar() {
 
         <div className="flex items-center gap-2">
           <ThemeToggle className="hidden sm:inline-flex" />
-          <Button asChild variant="brand" size="lg" className="hidden lg:inline-flex">
+          <Button asChild variant="brand" size="default" className="hidden lg:inline-flex">
             <Link to="/contact">Let&apos;s Work Together</Link>
           </Button>
           <button
@@ -103,7 +103,7 @@ export function Navbar() {
               </li>
             ))}
             <li className="mt-3 flex items-center gap-3 pb-2">
-              <Button asChild variant="brand" size="lg" className="flex-1">
+              <Button asChild variant="brand" size="default" className="flex-1">
                 <Link to="/contact">Let&apos;s Work Together</Link>
               </Button>
               <ThemeToggle className="h-11 w-11 sm:hidden" />

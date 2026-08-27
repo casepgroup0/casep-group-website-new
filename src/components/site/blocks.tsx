@@ -455,10 +455,10 @@ export function CTASection({
                 {description}
               </p>
               <div className="mt-8 flex flex-wrap gap-3">
-                <Button asChild variant="brand" size="xl">
+                <Button asChild variant="brand" size="default">
                   <Link to="/contact">Start a Project</Link>
                 </Button>
-                <Button asChild variant="onDark" size="xl">
+                <Button asChild variant="onDark" size="default">
                   <Link to="/contact">Talk to CASEP GROUP</Link>
                 </Button>
               </div>
