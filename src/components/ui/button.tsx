@@ -25,11 +25,11 @@ const buttonVariants = cva(
           "border border-border bg-card text-foreground shadow-soft hover:border-primary/40 hover:text-primary transition-colors",
       },
       size: {
-        default: "h-9 px-4 py-2",
-        sm: "h-8 rounded-md px-3 text-xs",
-        lg: "h-11 rounded-lg px-7 text-[0.95rem]",
-        xl: "h-12 rounded-lg px-8 text-base",
-        icon: "h-9 w-9",
+        default: "h-8 px-3.5 py-1.5 text-[13px]",
+        sm: "h-7 rounded-md px-2.5 text-[11px]",
+        lg: "h-9 rounded-lg px-5 text-sm",
+        xl: "h-10 rounded-lg px-6 text-sm",
+        icon: "h-8 w-8",
       },
 
     },

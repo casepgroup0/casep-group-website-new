@@ -186,9 +186,6 @@ function ContactPage() {
           <Reveal delay={100}>
             <div className="rounded-3xl border border-border bg-surface p-7 shadow-soft md:p-9">
               <h2 className="text-xl font-bold">Contact information</h2>
-              <p className="mt-2 text-sm text-muted-foreground">
-                Placeholder details — to be updated with official contact information.
-              </p>
               <ul className="mt-6 space-y-4 text-sm">
                 <li className="flex items-start gap-3">
                   <Mail className="mt-0.5 h-4 w-4 text-primary" aria-hidden="true" />
@@ -213,7 +210,7 @@ function ContactPage() {
               </ul>
 
               <h3 className="mt-8 text-sm font-semibold uppercase tracking-wide text-muted-foreground">
-                Follow CASEP GROUP
+                Connect With Us
               </h3>
               <ul className="mt-4 flex flex-wrap gap-2">
                 {socialLinks.map((social) => (
