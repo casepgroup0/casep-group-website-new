@@ -91,7 +91,9 @@ function Home() {
             </p>
             <div className="mt-6 flex flex-wrap gap-3 sm:mt-9">
               <Button asChild variant="destructive" size="xl">
-                <Link to="/contact">Let&apos;s Work Together</Link>
+                <Link to="/contact" search={{ type: "demo" }}>
+                  Let&apos;s Work Together
+                </Link>
               </Button>
               <Button asChild variant="onDark" size="xl">
                 <Link to="/solutions">Explore Our Solutions</Link>
