@@ -21,6 +21,7 @@ import {
 import aboutImage from "@/assets/about-collab.jpg";
 import dashboardLight from "@/assets/dashboard-light.png";
 import dashboardDark from "@/assets/dashboard-dark.png";
+import heroImage from "@/assets/hero-workspace-red.png";
 import { products } from "@/data/site";
 
 const title = "CASEP GROUP — Transforming Organizations Through Technology";
@@ -71,7 +72,14 @@ function Home() {
   return (
     <>
       {/* Hero */}
-      <section className="relative overflow-hidden text-navy-foreground">
+      <section
+        className="relative overflow-hidden bg-cover bg-center text-navy-foreground"
+        style={{ backgroundImage: `url(${heroImage})` }}
+      >
+        <div
+          className="absolute inset-0 bg-gradient-to-r from-black/85 via-black/70 to-black/40"
+          aria-hidden="true"
+        />
         <div className="container-page relative z-10 py-14 sm:py-16 md:py-20 lg:py-28">
           <Reveal className="max-w-3xl">
             <h1 className="mt-4 text-3xl font-extrabold leading-[1.1] sm:mt-6 sm:text-4xl sm:leading-[1.05] md:text-5xl lg:text-6xl">
@@ -82,7 +90,7 @@ function Home() {
               processes, and build scalable digital solutions that drive efficiency and growth.
             </p>
             <div className="mt-6 flex flex-wrap gap-3 sm:mt-9">
-              <Button asChild variant="brand" size="xl">
+              <Button asChild variant="destructive" size="xl">
                 <Link to="/contact">Let&apos;s Work Together</Link>
               </Button>
               <Button asChild variant="onDark" size="xl">
@@ -104,7 +112,7 @@ function Home() {
                 className="flex flex-col items-center gap-1.5 text-center sm:flex-row sm:gap-3 sm:text-left"
               >
                 <item.icon
-                  className="h-4 w-4 shrink-0 text-cyan sm:h-5 sm:w-5"
+                  className="h-4 w-4 shrink-0 text-red-400 sm:h-5 sm:w-5"
                   aria-hidden="true"
                 />
                 <span className="text-[10px] font-medium leading-tight text-navy-foreground/85 sm:text-sm">
