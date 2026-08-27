@@ -122,8 +122,9 @@ function About() {
             <p className="mt-5 text-base leading-relaxed text-muted-foreground">
               Caleb Agyei Sey founded CASEP GROUP to bring practical, well-engineered technology to
               organizations that have historically been underserved by enterprise software. His
-              work focuses on software development, cloud technology, and business process
-              automation — building systems that people actually use day to day.
+              work focuses on software and website development and management, cloud technology,
+              and business process automation, building systems that people actually use day to
+              day.
             </p>
             <p className="mt-4 text-base leading-relaxed text-muted-foreground">
               He leads the company&apos;s technical direction, working closely with clients to
