@@ -106,9 +106,9 @@ function About() {
           <Reveal>
             <img
               src={founderImage}
-              alt="Portrait placeholder for Caleb Agyei Sey, Founder of CASEP GROUP"
-              width={912}
-              height={1104}
+              alt="Caleb Agyei Sey, Founder of CASEP GROUP"
+              width={715}
+              height={1018}
               loading="lazy"
               className="w-full rounded-3xl border border-border object-cover shadow-lift"
             />
@@ -129,9 +129,6 @@ function About() {
               He leads the company&apos;s technical direction, working closely with clients to
               translate operational challenges into clear system requirements and dependable
               digital solutions.
-            </p>
-            <p className="mt-4 text-sm text-muted-foreground">
-              Portrait placeholder — to be replaced with an official photograph.
             </p>
           </Reveal>
         </div>
