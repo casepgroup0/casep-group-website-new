@@ -21,10 +21,6 @@ import {
 import aboutImage from "@/assets/about-collab.jpg";
 import dashboardLight from "@/assets/dashboard-light.png";
 import dashboardDark from "@/assets/dashboard-dark.png";
-import productBg from "@/assets/bg-workspace-2.jpg";
-import heroVideoMp4 from "@/assets/hero-bg.mp4";
-import heroVideoWebm from "@/assets/hero-bg.webm";
-import heroPoster from "@/assets/hero-poster.jpg";
 import { products } from "@/data/site";
 
 const title = "CASEP GROUP — Transforming Organizations Through Technology";
@@ -76,31 +72,6 @@ function Home() {
     <>
       {/* Hero */}
       <section className="relative overflow-hidden text-navy-foreground">
-        {/* Looping background video. Hidden (in favor of the static poster
-            image) when the user has requested reduced motion. */}
-        <video
-          className="absolute inset-0 hidden h-full w-full object-cover motion-safe:block"
-          autoPlay
-          muted
-          loop
-          playsInline
-          poster={heroPoster}
-          aria-hidden="true"
-        >
-          <source src={heroVideoWebm} type="video/webm" />
-          <source src={heroVideoMp4} type="video/mp4" />
-        </video>
-        <img
-          src={heroPoster}
-          alt=""
-          aria-hidden="true"
-          className="absolute inset-0 hidden h-full w-full object-cover motion-reduce:block"
-        />
-        <div className="navy-video-overlay absolute inset-0" aria-hidden="true" />
-        <div
-          className="absolute -left-32 top-24 z-[1] h-96 w-96 rounded-full bg-primary/25 blur-3xl animate-pulse-glow"
-          aria-hidden="true"
-        />
         <div className="container-page relative z-10 py-14 sm:py-16 md:py-20 lg:py-28">
           <Reveal className="max-w-3xl">
             <h1 className="mt-4 text-3xl font-extrabold leading-[1.1] sm:mt-6 sm:text-4xl sm:leading-[1.05] md:text-5xl lg:text-6xl">
@@ -125,7 +96,7 @@ function Home() {
         </div>
 
         {/* Trust strip */}
-        <div className="relative z-10 border-t border-navy-foreground/10 bg-navy-deep/40">
+        <div className="relative z-10 border-t border-navy-foreground/10">
           <ul className="container-page grid grid-cols-4 gap-2 py-5 sm:gap-4 sm:py-7">
             {trustStrip.map((item) => (
               <li
@@ -186,14 +157,11 @@ function Home() {
       <SolutionsGrid />
 
       {/* Featured product */}
-      <section
-        className="bg-photo-navy relative overflow-hidden py-14 text-navy-foreground sm:py-16 md:py-20 lg:pt-10 lg:pb-14"
-        style={{ backgroundImage: `url(${productBg})` }}
-      >
+      <section className="relative overflow-hidden py-14 text-navy-foreground sm:py-16 md:py-20 lg:pt-10 lg:pb-14">
         <div className="container-page relative z-10">
           <div className="grid items-center gap-8 md:grid-cols-2 md:gap-10 lg:items-start lg:gap-12">
             <Reveal>
-              <span className="inline-flex rounded-full bg-gradient-brand px-3 py-1 text-[0.7rem] font-bold uppercase tracking-wide text-primary-foreground">
+              <span className="inline-flex rounded-full px-3 py-1 text-[0.7rem] font-bold uppercase tracking-wide text-primary-foreground">
                 CASEP GROUP Product
               </span>
               <h2 className="mt-4 text-2xl font-bold leading-tight sm:mt-5 sm:text-3xl md:text-4xl lg:text-[2.75rem]">

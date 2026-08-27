@@ -31,12 +31,7 @@ export function PageHero({
   children?: ReactNode;
 }) {
   return (
-    <section className="relative overflow-hidden bg-gradient-navy text-navy-foreground">
-      <div className="absolute inset-0 bg-grid opacity-60" aria-hidden="true" />
-      <div
-        className="absolute -right-32 top-0 h-96 w-96 rounded-full bg-cyan/20 blur-3xl animate-pulse-glow"
-        aria-hidden="true"
-      />
+    <section className="relative overflow-hidden text-navy-foreground">
       <div className="container-page relative py-14 sm:py-16 md:py-20 lg:py-28">
         <Reveal className="max-w-3xl">
           <p className="text-sm font-semibold tracking-wide text-cyan">{eyebrow}</p>
@@ -67,9 +62,9 @@ export function ServicesGrid({ tone = "default" }: { tone?: "default" | "surface
             <Link
               to="/services/$slug"
               params={{ slug: service.slug }}
-              className="group flex aspect-square flex-col items-center justify-center rounded-lg border border-border bg-card/75 p-1 text-center shadow-soft backdrop-blur-xl transition-all duration-300 hover:-translate-y-1 hover:border-primary/30 hover:shadow-lift sm:aspect-auto sm:h-full sm:items-start sm:justify-start sm:rounded-2xl sm:p-6 sm:text-left lg:p-7"
+              className="group flex aspect-square flex-col items-center justify-center rounded-lg border border-border p-1 text-center shadow-soft transition-all duration-300 hover:-translate-y-1 hover:border-primary/30 hover:shadow-lift sm:aspect-auto sm:h-full sm:items-start sm:justify-start sm:rounded-2xl sm:p-6 sm:text-left lg:p-7"
             >
-              <span className="inline-flex h-6 w-6 items-center justify-center rounded-md bg-accent text-primary transition-colors group-hover:bg-gradient-brand group-hover:text-primary-foreground sm:h-12 sm:w-12 sm:rounded-xl">
+              <span className="inline-flex h-6 w-6 items-center justify-center rounded-md text-primary transition-colors group-hover:text-primary-foreground sm:h-12 sm:w-12 sm:rounded-xl">
                 <Icon name={service.icon} className="h-3.5 w-3.5 sm:h-6 sm:w-6" />
               </span>
               <h3 className="mt-1 text-center text-[5px] font-bold uppercase leading-[1.15] tracking-tight sm:mt-5 sm:text-xl sm:font-bold sm:normal-case sm:leading-tight sm:tracking-normal">
@@ -112,11 +107,11 @@ export function SolutionsGrid({ tone = "default" }: { tone?: "default" | "surfac
                 aria-expanded={isActive}
                 aria-label={solution.title}
                 className={cn(
-                  "flex aspect-square w-full flex-col items-center justify-center rounded-lg border p-1 text-center shadow-soft backdrop-blur-xl transition-all duration-300 hover:-translate-y-1 hover:shadow-lift sm:aspect-auto sm:h-full sm:items-start sm:justify-start sm:rounded-2xl sm:p-6 sm:text-left lg:p-7",
-                  isActive ? "border-primary bg-accent/60" : "border-border bg-card/75",
+                  "flex aspect-square w-full flex-col items-center justify-center rounded-lg border p-1 text-center shadow-soft transition-all duration-300 hover:-translate-y-1 hover:shadow-lift sm:aspect-auto sm:h-full sm:items-start sm:justify-start sm:rounded-2xl sm:p-6 sm:text-left lg:p-7",
+                  isActive ? "border-primary" : "border-border",
                 )}
               >
-                <span className="inline-flex h-6 w-6 items-center justify-center rounded-md bg-gradient-brand text-primary-foreground sm:h-11 sm:w-11 sm:rounded-lg">
+                <span className="inline-flex h-6 w-6 items-center justify-center rounded-md text-primary-foreground sm:h-11 sm:w-11 sm:rounded-lg">
                   <Icon name={solution.icon} className="h-3.5 w-3.5 sm:h-5 sm:w-5" />
                 </span>
                 <h3 className="mt-1 text-center text-[5px] font-bold uppercase leading-[1.15] tracking-tight sm:mt-5 sm:text-lg sm:font-bold sm:normal-case sm:leading-tight sm:tracking-normal">
@@ -132,25 +127,23 @@ export function SolutionsGrid({ tone = "default" }: { tone?: "default" | "surfac
         <Reveal delay={solutions.length * 60} className="col-span-5 sm:col-span-1">
           <Link
             to="/contact"
-            search={{ type: "inquiry" }}
-            className="flex h-[60px] w-full items-center justify-between gap-2 rounded-lg border border-primary/30 bg-accent/60 px-3 sm:hidden"
+            search={{} as any}
+            className="flex h-[60px] w-full items-center justify-between gap-2 rounded-lg border border-primary/30 px-3 sm:hidden"
           >
             <span className="text-[11px] font-semibold leading-tight text-foreground">
               Not sure where to start?
             </span>
-            <span className="inline-flex max-w-[130px] shrink-0 items-center justify-center rounded-xl bg-gradient-brand px-2.5 py-1.5 text-center text-[8px] font-bold uppercase leading-tight tracking-wide text-primary-foreground">
+            <span className="inline-flex max-w-[130px] shrink-0 items-center justify-center rounded-xl px-2.5 py-1.5 text-center text-[8px] font-bold uppercase leading-tight tracking-wide text-primary-foreground">
               Discuss Your Requirements With Us
             </span>
           </Link>
-          <div className="hidden h-full flex-col justify-center rounded-2xl border border-primary/25 bg-accent/50 p-5 backdrop-blur-xl sm:flex sm:p-6 lg:p-7">
+          <div className="hidden h-full flex-col justify-center rounded-2xl border border-primary/25 p-5 sm:flex sm:p-6 lg:p-7">
             <h3 className="text-lg font-bold">Not sure where to start?</h3>
             <p className="mt-3 text-sm leading-relaxed text-muted-foreground">
               Tell us what is slowing your organization down and we will map the options.
             </p>
             <Button asChild variant="brand" size="lg" className="mt-6 self-start">
-              <Link to="/contact" search={{ type: "inquiry" }}>
-                Discuss Your Requirements
-              </Link>
+              <Link to="/contact" search={{} as any}>Discuss Your Requirements</Link>
             </Button>
           </div>
         </Reveal>
@@ -158,9 +151,9 @@ export function SolutionsGrid({ tone = "default" }: { tone?: "default" | "surfac
 
       {/* Mobile-only expanded detail panel for the tapped solution */}
       {active ? (
-        <div className="mt-4 rounded-2xl border border-primary/30 bg-card/90 p-5 shadow-soft backdrop-blur-xl sm:hidden">
+        <div className="mt-4 rounded-2xl border border-primary/30 p-5 shadow-soft sm:hidden">
           <div className="flex items-start justify-between gap-3">
-            <span className="inline-flex h-10 w-10 items-center justify-center rounded-lg bg-gradient-brand text-primary-foreground">
+            <span className="inline-flex h-10 w-10 items-center justify-center rounded-lg text-primary-foreground">
               <Icon name={active.icon} className="h-5 w-5" />
             </span>
             <button
@@ -191,8 +184,8 @@ export function WhyGrid() {
       <div className="mt-8 grid gap-5 sm:mt-10 sm:grid-cols-2 sm:gap-6 md:mt-12 lg:grid-cols-3">
         {whyCasep.map((item, i) => (
           <Reveal key={item.title} delay={i * 50}>
-            <div className="h-full rounded-2xl border border-border bg-card/75 p-5 shadow-soft backdrop-blur-xl sm:p-6 lg:p-7">
-              <span className="inline-flex h-11 w-11 items-center justify-center rounded-lg bg-accent text-primary">
+            <div className="h-full rounded-2xl border border-border p-5 shadow-soft sm:p-6 lg:p-7">
+              <span className="inline-flex h-11 w-11 items-center justify-center rounded-lg text-primary">
                 <Icon name={item.icon} className="h-5 w-5" />
               </span>
               <h3 className="mt-5 text-lg font-bold">{item.title}</h3>
@@ -217,7 +210,7 @@ export function ProcessTimeline() {
       <ol className="mt-8 grid gap-5 sm:mt-10 sm:grid-cols-2 sm:gap-6 md:mt-12 lg:grid-cols-3">
         {processSteps.map((step, i) => (
           <Reveal key={step.number} delay={i * 60} as="li">
-            <div className="relative h-full rounded-2xl border border-border bg-card/75 p-5 shadow-soft backdrop-blur-xl sm:p-6 lg:p-7">
+            <div className="relative h-full rounded-2xl border border-border p-5 shadow-soft sm:p-6 lg:p-7">
               <span className="text-sm font-bold text-gradient-brand">{step.number}</span>
               <h3 className="mt-2 text-lg font-bold">{step.title}</h3>
               <p className="mt-3 text-sm leading-relaxed text-muted-foreground">
@@ -242,8 +235,8 @@ export function IndustriesGrid({ tone = "surface" }: { tone?: "default" | "surfa
       <div className="mt-8 grid gap-5 sm:mt-10 sm:grid-cols-2 sm:gap-6 md:mt-12 md:grid-cols-3 lg:grid-cols-4">
         {industries.map((industry, i) => (
           <Reveal key={industry.title} delay={i * 40} as="article">
-            <div className="h-full rounded-2xl border border-border bg-card/75 p-5 shadow-soft backdrop-blur-xl transition-all duration-300 hover:-translate-y-1 hover:border-primary/30 hover:shadow-lift sm:p-6">
-              <span className="inline-flex h-10 w-10 items-center justify-center rounded-lg bg-accent text-primary">
+            <div className="h-full rounded-2xl border border-border p-5 shadow-soft transition-all duration-300 hover:-translate-y-1 hover:border-primary/30 hover:shadow-lift sm:p-6">
+              <span className="inline-flex h-10 w-10 items-center justify-center rounded-lg text-primary">
                 <Icon name={industry.icon} className="h-5 w-5" />
               </span>
               <h3 className="mt-4 text-base font-bold">{industry.title}</h3>
@@ -260,16 +253,7 @@ export function IndustriesGrid({ tone = "surface" }: { tone?: "default" | "surfa
 
 export function DifferentiatorBand() {
   return (
-    <section className="relative overflow-hidden bg-gradient-navy py-14 text-navy-foreground sm:py-16 md:py-20 lg:py-28">
-      <div className="absolute inset-0 bg-grid opacity-50" aria-hidden="true" />
-      <div
-        className="absolute -left-24 top-10 h-80 w-80 rounded-full bg-primary/25 blur-3xl animate-pulse-glow"
-        aria-hidden="true"
-      />
-      <div
-        className="absolute -right-16 bottom-0 h-72 w-72 rounded-full bg-cyan/20 blur-3xl animate-float-slow"
-        aria-hidden="true"
-      />
+    <section className="relative overflow-hidden py-14 text-navy-foreground sm:py-16 md:py-20 lg:py-28">
       <div className="container-page relative">
         <Reveal className="max-w-3xl">
           <p className="text-sm font-semibold tracking-wide text-cyan">The difference</p>
@@ -298,7 +282,7 @@ export function TechnologyStrip() {
       <div className="mt-8 flex flex-wrap gap-2.5 sm:mt-10 sm:gap-3">
         {technologies.map((tech, i) => (
           <Reveal key={tech} delay={i * 25}>
-            <span className="inline-flex rounded-full border border-border bg-card/75 px-3.5 py-1.5 text-sm font-medium text-muted-foreground shadow-soft backdrop-blur-xl transition-colors hover:border-primary/40 hover:text-primary sm:px-4 sm:py-2">
+            <span className="inline-flex rounded-full border border-border px-3.5 py-1.5 text-sm font-medium text-muted-foreground shadow-soft transition-colors hover:border-primary/40 hover:text-primary sm:px-4 sm:py-2">
               {tech}
             </span>
           </Reveal>
@@ -319,13 +303,13 @@ export function CaseStudiesGrid() {
       <div className="mt-8 grid gap-5 sm:mt-10 sm:grid-cols-2 sm:gap-6 md:mt-12 lg:grid-cols-3">
         {caseStudies.map((study, i) => (
           <Reveal key={study.title} delay={i * 60} as="article">
-            <div className="flex h-full flex-col rounded-2xl border border-border bg-card/75 p-5 shadow-soft backdrop-blur-xl sm:p-6 lg:p-7">
+            <div className="flex h-full flex-col rounded-2xl border border-border p-5 shadow-soft sm:p-6 lg:p-7">
               <div className="flex items-center justify-between gap-3">
                 <span className="text-xs font-semibold uppercase tracking-wide text-primary">
                   {study.industry}
                 </span>
                 {study.placeholder ? (
-                  <span className="rounded-full bg-muted px-2.5 py-1 text-[0.65rem] font-semibold uppercase tracking-wide text-muted-foreground">
+                  <span className="rounded-full px-2.5 py-1 text-[0.65rem] font-semibold uppercase tracking-wide text-muted-foreground">
                     Example
                   </span>
                 ) : null}
@@ -364,7 +348,7 @@ export function TestimonialsGrid() {
       <div className="mt-8 grid gap-5 sm:mt-10 sm:grid-cols-2 sm:gap-6 md:mt-12 lg:grid-cols-3">
         {testimonials.map((item, i) => (
           <Reveal key={item.role} delay={i * 60} as="article">
-            <figure className="flex h-full flex-col rounded-2xl border border-border bg-card/75 p-5 shadow-soft backdrop-blur-xl sm:p-6 lg:p-7">
+            <figure className="flex h-full flex-col rounded-2xl border border-border p-5 shadow-soft sm:p-6 lg:p-7">
               <Quote className="h-6 w-6 text-primary" aria-hidden="true" />
               <blockquote className="mt-4 flex-1 text-sm leading-relaxed text-muted-foreground">
                 {item.quote}
@@ -387,7 +371,7 @@ export function StatsBand() {
       <div className="grid gap-5 sm:grid-cols-2 sm:gap-6 lg:grid-cols-4">
         {capabilityStats.map((stat, i) => (
           <Reveal key={stat.label} delay={i * 50}>
-            <div className="h-full rounded-2xl border border-border bg-card/75 p-5 text-center shadow-soft backdrop-blur-xl sm:p-6 lg:p-7">
+            <div className="h-full rounded-2xl border border-border p-5 text-center shadow-soft sm:p-6 lg:p-7">
               <p className="text-4xl font-extrabold text-gradient-brand">{stat.value}</p>
               <p className="mt-2 text-sm font-semibold">{stat.label}</p>
               <p className="mt-1 text-xs text-muted-foreground">{stat.note}</p>
@@ -410,13 +394,13 @@ export function InsightsGrid({ tone = "default" }: { tone?: "default" | "surface
       <div className="mt-8 grid gap-5 sm:mt-10 sm:grid-cols-2 sm:gap-6 md:mt-12 lg:grid-cols-3">
         {insights.map((post, i) => (
           <Reveal key={post.slug} delay={i * 50} as="article">
-            <div className="flex h-full flex-col rounded-2xl border border-border bg-card/75 p-5 shadow-soft backdrop-blur-xl transition-all duration-300 hover:-translate-y-1 hover:shadow-lift sm:p-6 lg:p-7">
+            <div className="flex h-full flex-col rounded-2xl border border-border p-5 shadow-soft transition-all duration-300 hover:-translate-y-1 hover:shadow-lift sm:p-6 lg:p-7">
               <div className="flex items-center justify-between gap-3">
                 <span className="text-xs font-semibold uppercase tracking-wide text-primary">
                   {post.category}
                 </span>
                 {post.draft ? (
-                  <span className="rounded-full bg-muted px-2.5 py-1 text-[0.65rem] font-semibold uppercase tracking-wide text-muted-foreground">
+                  <span className="rounded-full px-2.5 py-1 text-[0.65rem] font-semibold uppercase tracking-wide text-muted-foreground">
                     Draft
                   </span>
                 ) : null}
@@ -446,12 +430,7 @@ export function CTASection({
     <section className={cn("py-14 sm:py-16 md:py-20 lg:py-24", className)}>
       <div className="container-page">
         <Reveal>
-          <div className="relative overflow-hidden rounded-3xl bg-gradient-navy px-5 py-10 text-navy-foreground shadow-lift sm:px-7 sm:py-14 md:px-14 md:py-16">
-            <div className="absolute inset-0 bg-grid opacity-40" aria-hidden="true" />
-            <div
-              className="absolute -right-20 -top-16 h-72 w-72 rounded-full bg-cyan/25 blur-3xl animate-pulse-glow"
-              aria-hidden="true"
-            />
+          <div className="relative overflow-hidden rounded-3xl px-5 py-10 text-navy-foreground shadow-lift sm:px-7 sm:py-14 md:px-14 md:py-16">
             <div className="relative max-w-2xl">
               <h2 className="text-2xl font-bold leading-tight sm:text-3xl md:text-4xl">{title}</h2>
               <p className="mt-3 text-sm leading-relaxed text-navy-foreground/75 sm:mt-4 sm:text-base">
@@ -459,9 +438,7 @@ export function CTASection({
               </p>
               <div className="mt-8 flex flex-wrap gap-3">
                 <Button asChild variant="brand" size="default">
-                  <Link to="/contact" search={{ type: "inquiry" }}>
-                    Start a Project
-                  </Link>
+                  <Link to="/contact" search={{} as any}>Start a Project</Link>
                 </Button>
               </div>
             </div>

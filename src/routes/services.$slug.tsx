@@ -59,7 +59,7 @@ function ServiceDetail() {
       <Section>
         <div className="grid gap-8 lg:grid-cols-2">
           <Reveal>
-            <div className="h-full rounded-2xl border border-border bg-card p-8 shadow-soft">
+            <div className="h-full rounded-2xl border border-border p-8 shadow-soft">
               <h2 className="text-2xl font-bold">The problem</h2>
               <p className="mt-4 text-base leading-relaxed text-muted-foreground">
                 {service.problem}
@@ -67,7 +67,7 @@ function ServiceDetail() {
             </div>
           </Reveal>
           <Reveal delay={80}>
-            <div className="h-full rounded-2xl border border-primary/25 bg-accent/50 p-8">
+            <div className="h-full rounded-2xl border border-primary/25 p-8">
               <h2 className="text-2xl font-bold">Our approach</h2>
               <p className="mt-4 text-base leading-relaxed text-muted-foreground">
                 {service.solution}
@@ -84,7 +84,7 @@ function ServiceDetail() {
             <ul className="mt-8 space-y-3">
               {service.capabilities.map((item, i) => (
                 <Reveal key={item} delay={i * 40} as="li">
-                  <div className="flex items-start gap-3 rounded-xl border border-border bg-card px-5 py-4 shadow-soft">
+                  <div className="flex items-start gap-3 rounded-xl border border-border px-5 py-4 shadow-soft">
                     <Check className="mt-0.5 h-4 w-4 shrink-0 text-primary" aria-hidden="true" />
                     <span className="text-sm">{item}</span>
                   </div>
@@ -97,7 +97,7 @@ function ServiceDetail() {
             <ul className="mt-8 space-y-3">
               {service.benefits.map((item, i) => (
                 <Reveal key={item} delay={i * 40} as="li">
-                  <div className="flex items-start gap-3 rounded-xl border border-border bg-card px-5 py-4 shadow-soft">
+                  <div className="flex items-start gap-3 rounded-xl border border-border px-5 py-4 shadow-soft">
                     <Check className="mt-0.5 h-4 w-4 shrink-0 text-cyan" aria-hidden="true" />
                     <span className="text-sm">{item}</span>
                   </div>
@@ -112,7 +112,7 @@ function ServiceDetail() {
                 {service.technologies.map((tech) => (
                   <li
                     key={tech}
-                    className="rounded-full border border-border bg-card px-3.5 py-1.5 text-xs font-medium text-muted-foreground"
+                    className="rounded-full border border-border px-3.5 py-1.5 text-xs font-medium text-muted-foreground"
                   >
                     {tech}
                   </li>

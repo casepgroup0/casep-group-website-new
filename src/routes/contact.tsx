@@ -101,12 +101,12 @@ function ContactPage() {
             <form
               onSubmit={handleSubmit}
               noValidate
-              className="rounded-3xl border border-border bg-card p-7 shadow-soft md:p-9"
+              className="rounded-3xl border border-border p-7 shadow-soft md:p-9"
             >
               {status === "sent" ? (
                 <div
                   role="status"
-                  className="mb-6 rounded-xl border border-primary/30 bg-accent/60 p-5 text-sm"
+                  className="mb-6 rounded-xl border border-primary/30 p-5 text-sm"
                 >
                   <p className="font-semibold">Inquiry captured.</p>
                   <p className="mt-1 text-muted-foreground">
@@ -145,7 +145,7 @@ function ContactPage() {
                         name="interest"
                         required
                         defaultValue=""
-                        className="flex h-9 w-full rounded-md border border-input bg-transparent px-3 py-1 text-sm shadow-sm transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring"
+                        className="flex h-9 w-full rounded-md border border-input px-3 py-1 text-sm shadow-sm transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring"
                       >
                         <option value="" disabled>
                           Select an option
@@ -179,7 +179,7 @@ function ContactPage() {
                         name="neededService"
                         required
                         defaultValue=""
-                        className="flex h-9 w-full rounded-md border border-input bg-transparent px-3 py-1 text-sm shadow-sm transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring"
+                        className="flex h-9 w-full rounded-md border border-input px-3 py-1 text-sm shadow-sm transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring"
                       >
                         <option value="" disabled>
                           Select an option
@@ -199,7 +199,7 @@ function ContactPage() {
                         id="budget"
                         name="budget"
                         defaultValue=""
-                        className="flex h-9 w-full rounded-md border border-input bg-transparent px-3 py-1 text-sm shadow-sm transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring"
+                        className="flex h-9 w-full rounded-md border border-input px-3 py-1 text-sm shadow-sm transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring"
                       >
                         <option value="" disabled>
                           Select a range
@@ -219,7 +219,7 @@ function ContactPage() {
                         id="description"
                         name="description"
                         rows={4}
-                        className="flex w-full rounded-md border border-input bg-transparent px-3 py-2 text-sm shadow-sm transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring"
+                        className="flex w-full rounded-md border border-input px-3 py-2 text-sm shadow-sm transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring"
                       />
                     </Field>
                   </div>
@@ -250,7 +250,7 @@ function ContactPage() {
           </Reveal>
 
           <Reveal delay={100}>
-            <div className="rounded-3xl border border-border bg-surface p-7 shadow-soft md:p-9">
+            <div className="rounded-3xl border border-border p-7 shadow-soft md:p-9">
               <h2 className="text-xl font-bold">Contact information</h2>
               <ul className="mt-6 space-y-4 text-sm">
                 <li className="flex items-start gap-3">
@@ -286,7 +286,7 @@ function ContactPage() {
                   <li key={social.label}>
                     <a
                       href={social.href}
-                      className="inline-flex rounded-md border border-border bg-card px-3 py-1.5 text-xs font-medium transition-colors hover:border-primary/40 hover:text-primary"
+                      className="inline-flex rounded-md border border-border px-3 py-1.5 text-xs font-medium transition-colors hover:border-primary/40 hover:text-primary"
                     >
                       {social.label}
                     </a>

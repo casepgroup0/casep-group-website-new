@@ -67,7 +67,7 @@ function About() {
       <Section tone="surface">
         <div className="grid gap-6 lg:grid-cols-2">
           <Reveal>
-            <div className="h-full rounded-2xl border border-border bg-card p-8 shadow-soft">
+            <div className="h-full rounded-2xl border border-border p-8 shadow-soft">
               <h2 className="text-2xl font-bold">Our Mission</h2>
               <p className="mt-4 text-base leading-relaxed text-muted-foreground">
                 To empower organizations with practical technology solutions that improve
@@ -76,7 +76,7 @@ function About() {
             </div>
           </Reveal>
           <Reveal delay={80}>
-            <div className="h-full rounded-2xl border border-border bg-card p-8 shadow-soft">
+            <div className="h-full rounded-2xl border border-border p-8 shadow-soft">
               <h2 className="text-2xl font-bold">Our Vision</h2>
               <p className="mt-4 text-base leading-relaxed text-muted-foreground">
                 To become a trusted technology partner for organizations seeking to transform how
@@ -91,7 +91,7 @@ function About() {
           <ul className="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
             {values.map((value, i) => (
               <Reveal key={value} delay={i * 40} as="li">
-                <div className="flex items-center gap-3 rounded-xl border border-border bg-card px-5 py-4 shadow-soft">
+                <div className="flex items-center gap-3 rounded-xl border border-border px-5 py-4 shadow-soft">
                   <Check className="h-4 w-4 text-primary" aria-hidden="true" />
                   <span className="text-sm font-semibold">{value}</span>
                 </div>
