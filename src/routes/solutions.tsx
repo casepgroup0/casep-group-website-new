@@ -40,13 +40,13 @@ function SolutionsPage() {
         </Button>
       </PageHero>
       <SolutionsGrid hideHeading />
-      <div className="lg:-mt-32">
+      <div className="lg:-mt-16">
         <DifferentiatorBand />
       </div>
-      <div className="lg:-mt-32">
+      <div className="lg:-mt-16">
         <IndustriesGrid />
       </div>
-      <div className="lg:-mt-32">
+      <div className="lg:-mt-16">
         <CTASection hideSolutionsLink />
       </div>
     </>
