@@ -1,4 +1,4 @@
-import { useState, type ReactNode } from "react";
+import { useEffect, useState, type ReactNode } from "react";
 import { Link } from "@tanstack/react-router";
 import { ArrowRight, Quote } from "lucide-react";
 import { Button } from "@/components/ui/button";
@@ -358,13 +358,25 @@ export function CaseStudiesGrid() {
 }
 
 export function TestimonialsGrid() {
+  const [activeSlide, setActiveSlide] = useState(0);
+
+  // Mobile-only auto-advance: one card visible at a time, holding 20s per card.
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setActiveSlide((prev) => (prev + 1) % testimonials.length);
+    }, 20000);
+    return () => clearInterval(timer);
+  }, []);
+
   return (
     <Section>
       <SectionHeading
         eyebrow="Testimonials"
         title="Client Voices, Published Once Verified."
       />
-      <div className="mt-6 grid gap-5 sm:mt-7 sm:grid-cols-2 sm:gap-6 md:mt-8 lg:grid-cols-3">
+
+      {/* Tablet/desktop: unchanged static grid */}
+      <div className="mt-6 hidden gap-5 sm:mt-7 sm:grid sm:grid-cols-2 sm:gap-6 md:mt-8 lg:grid-cols-3">
         {testimonials.map((item, i) => (
           <Reveal key={item.role} delay={i * 60} as="article">
             <figure className="flex h-full flex-col rounded-2xl border border-border p-5 shadow-soft sm:p-6 lg:p-7">
@@ -379,6 +391,49 @@ export function TestimonialsGrid() {
             </figure>
           </Reveal>
         ))}
+      </div>
+
+      {/* Mobile only: one-card-at-a-time slideshow, sliding right to left */}
+      <div className="mt-6 sm:hidden">
+        <div className="overflow-hidden">
+          <div
+            className="flex transition-transform duration-700 ease-in-out"
+            style={{ transform: `translateX(-${activeSlide * 100}%)` }}
+          >
+            {testimonials.map((item) => (
+              <figure
+                key={item.role}
+                className="flex w-full shrink-0 flex-col rounded-2xl border border-border p-5 shadow-soft"
+              >
+                <Quote className="h-6 w-6 text-primary" aria-hidden="true" />
+                <blockquote className="mt-4 flex-1 text-sm leading-relaxed text-muted-foreground">
+                  {item.quote}
+                </blockquote>
+                <figcaption className="mt-6 border-t border-border pt-4 text-sm">
+                  <span className="font-semibold">{item.role}</span>
+                  <span className="block text-xs text-muted-foreground">{item.context}</span>
+                </figcaption>
+              </figure>
+            ))}
+          </div>
+        </div>
+
+        {/* Progress dots, tappable to jump to a card */}
+        <div className="mt-4 flex justify-center gap-2">
+          {testimonials.map((item, i) => (
+            <button
+              key={item.role}
+              type="button"
+              aria-label={`Show testimonial ${i + 1} of ${testimonials.length}`}
+              aria-current={i === activeSlide}
+              onClick={() => setActiveSlide(i)}
+              className={cn(
+                "h-1.5 rounded-full transition-all duration-300",
+                i === activeSlide ? "w-6 bg-primary" : "w-1.5 bg-border",
+              )}
+            />
+          ))}
+        </div>
       </div>
     </Section>
   );
