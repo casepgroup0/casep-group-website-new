@@ -28,13 +28,17 @@ function useSwipeNavigation(itemCount: number, setActiveSlide: (updater: (prev: 
   const touchDeltaX = useRef(0);
 
   const onTouchStart = (e: React.TouchEvent<HTMLDivElement>) => {
-    touchStartX.current = e.touches[0].clientX;
+    const touch = e.touches[0];
+    if (!touch) return;
+    touchStartX.current = touch.clientX;
     touchDeltaX.current = 0;
   };
 
   const onTouchMove = (e: React.TouchEvent<HTMLDivElement>) => {
     if (touchStartX.current === null) return;
-    touchDeltaX.current = e.touches[0].clientX - touchStartX.current;
+    const touch = e.touches[0];
+    if (!touch) return;
+    touchDeltaX.current = touch.clientX - touchStartX.current;
   };
 
   const onTouchEnd = () => {
