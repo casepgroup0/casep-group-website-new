@@ -312,7 +312,49 @@ export function TechnologyStrip() {
   );
 }
 
+function CaseStudyCard({ study }: { study: (typeof caseStudies)[number] }) {
+  return (
+    <div className="flex h-full flex-col rounded-2xl border border-border p-5 shadow-soft sm:p-6 lg:p-7">
+      <div className="flex items-center justify-between gap-3">
+        <span className="text-xs font-semibold uppercase tracking-wide text-primary">
+          {study.industry}
+        </span>
+        {study.placeholder ? (
+          <span className="rounded-full px-2.5 py-1 text-[0.65rem] font-semibold uppercase tracking-wide text-muted-foreground">
+            Example
+          </span>
+        ) : null}
+      </div>
+      <h3 className="mt-3 text-lg font-bold">{study.title}</h3>
+      <dl className="mt-4 space-y-3 text-sm leading-relaxed text-muted-foreground">
+        <div>
+          <dt className="font-semibold text-foreground">Challenge</dt>
+          <dd>{study.challenge}</dd>
+        </div>
+        <div>
+          <dt className="font-semibold text-foreground">Solution</dt>
+          <dd>{study.solution}</dd>
+        </div>
+        <div>
+          <dt className="font-semibold text-foreground">Impact</dt>
+          <dd>{study.impact}</dd>
+        </div>
+      </dl>
+    </div>
+  );
+}
+
 export function CaseStudiesGrid() {
+  const [activeSlide, setActiveSlide] = useState(0);
+
+  // Mobile-only auto-advance: one card visible at a time, holding 20s per card.
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setActiveSlide((prev) => (prev + 1) % caseStudies.length);
+    }, 20000);
+    return () => clearInterval(timer);
+  }, []);
+
   return (
     <Section tone="surface" decorated>
       <SectionHeading
@@ -320,38 +362,46 @@ export function CaseStudiesGrid() {
         title="Work Framed Around Outcomes."
         description="Illustrative examples of the engagements we structure. Published client work will replace these entries."
       />
-      <div className="mt-8 grid gap-5 sm:mt-10 sm:grid-cols-2 sm:gap-6 md:mt-12 lg:grid-cols-3">
+
+      {/* Tablet/desktop: unchanged static grid */}
+      <div className="mt-8 hidden gap-5 sm:mt-10 sm:grid sm:grid-cols-2 sm:gap-6 md:mt-12 lg:grid-cols-3">
         {caseStudies.map((study, i) => (
           <Reveal key={study.title} delay={i * 60} as="article">
-            <div className="flex h-full flex-col rounded-2xl border border-border p-5 shadow-soft sm:p-6 lg:p-7">
-              <div className="flex items-center justify-between gap-3">
-                <span className="text-xs font-semibold uppercase tracking-wide text-primary">
-                  {study.industry}
-                </span>
-                {study.placeholder ? (
-                  <span className="rounded-full px-2.5 py-1 text-[0.65rem] font-semibold uppercase tracking-wide text-muted-foreground">
-                    Example
-                  </span>
-                ) : null}
-              </div>
-              <h3 className="mt-3 text-lg font-bold">{study.title}</h3>
-              <dl className="mt-4 space-y-3 text-sm leading-relaxed text-muted-foreground">
-                <div>
-                  <dt className="font-semibold text-foreground">Challenge</dt>
-                  <dd>{study.challenge}</dd>
-                </div>
-                <div>
-                  <dt className="font-semibold text-foreground">Solution</dt>
-                  <dd>{study.solution}</dd>
-                </div>
-                <div>
-                  <dt className="font-semibold text-foreground">Impact</dt>
-                  <dd>{study.impact}</dd>
-                </div>
-              </dl>
-            </div>
+            <CaseStudyCard study={study} />
           </Reveal>
         ))}
+      </div>
+
+      {/* Mobile only: one-card-at-a-time slideshow, sliding right to left */}
+      <div className="mt-8 sm:hidden">
+        <div className="overflow-hidden">
+          <div
+            className="flex transition-transform duration-700 ease-in-out"
+            style={{ transform: `translateX(-${activeSlide * 100}%)` }}
+          >
+            {caseStudies.map((study) => (
+              <div key={study.title} className="w-full shrink-0">
+                <CaseStudyCard study={study} />
+              </div>
+            ))}
+          </div>
+        </div>
+
+        <div className="mt-4 flex justify-center gap-2">
+          {caseStudies.map((study, i) => (
+            <button
+              key={study.title}
+              type="button"
+              aria-label={`Show case study ${i + 1} of ${caseStudies.length}`}
+              aria-current={i === activeSlide}
+              onClick={() => setActiveSlide(i)}
+              className={cn(
+                "h-1.5 rounded-full transition-all duration-300",
+                i === activeSlide ? "w-6 bg-primary" : "w-1.5 bg-border",
+              )}
+            />
+          ))}
+        </div>
       </div>
     </Section>
   );
@@ -439,21 +489,68 @@ export function TestimonialsGrid() {
   );
 }
 
+function StatCard({ stat }: { stat: (typeof capabilityStats)[number] }) {
+  return (
+    <div className="h-full rounded-2xl border border-border p-5 text-center shadow-soft sm:p-6 lg:p-7">
+      <p className="text-4xl font-extrabold text-gradient-brand">{stat.value}</p>
+      <p className="mt-2 text-sm font-semibold">{stat.label}</p>
+      {stat.note ? <p className="mt-1 text-xs text-muted-foreground">{stat.note}</p> : null}
+    </div>
+  );
+}
+
 export function StatsBand() {
+  const [activeSlide, setActiveSlide] = useState(0);
+
+  // Mobile-only auto-advance: one stat visible at a time, holding 20s per card.
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setActiveSlide((prev) => (prev + 1) % capabilityStats.length);
+    }, 20000);
+    return () => clearInterval(timer);
+  }, []);
+
   return (
     <Section tone="surface">
-      <div className="grid gap-5 sm:grid-cols-2 sm:gap-6 lg:grid-cols-4">
+      {/* Tablet/desktop: unchanged static grid */}
+      <div className="hidden gap-5 sm:grid sm:grid-cols-2 sm:gap-6 lg:grid-cols-4">
         {capabilityStats.map((stat, i) => (
           <Reveal key={stat.label} delay={i * 50}>
-            <div className="h-full rounded-2xl border border-border p-5 text-center shadow-soft sm:p-6 lg:p-7">
-              <p className="text-4xl font-extrabold text-gradient-brand">{stat.value}</p>
-              <p className="mt-2 text-sm font-semibold">{stat.label}</p>
-              {stat.note ? (
-                <p className="mt-1 text-xs text-muted-foreground">{stat.note}</p>
-              ) : null}
-            </div>
+            <StatCard stat={stat} />
           </Reveal>
         ))}
+      </div>
+
+      {/* Mobile only: one-card-at-a-time slideshow, sliding right to left */}
+      <div className="sm:hidden">
+        <div className="overflow-hidden">
+          <div
+            className="flex transition-transform duration-700 ease-in-out"
+            style={{ transform: `translateX(-${activeSlide * 100}%)` }}
+          >
+            {capabilityStats.map((stat) => (
+              <div key={stat.label} className="w-full shrink-0">
+                <StatCard stat={stat} />
+              </div>
+            ))}
+          </div>
+        </div>
+
+        <div className="mt-4 flex justify-center gap-2">
+          {capabilityStats.map((stat, i) => (
+            <button
+              key={stat.label}
+              type="button"
+              aria-label={`Show stat ${i + 1} of ${capabilityStats.length}`}
+              aria-current={i === activeSlide}
+              onClick={() => setActiveSlide(i)}
+              className={cn(
+                "h-1.5 rounded-full transition-all duration-300",
+                i === activeSlide ? "w-6 bg-primary" : "w-1.5 bg-border",
+              )}
+            />
+          ))}
+        </div>
       </div>
     </Section>
   );
