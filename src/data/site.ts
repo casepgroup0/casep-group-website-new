@@ -564,8 +564,8 @@ export const testimonials = [
 
 /** Capability statements used in place of fabricated statistics. */
 export const capabilityStats = [
-  { label: "Projects Delivered", value: "—", note: "Figure to be published" },
-  { label: "Organizations Served", value: "—", note: "Figure to be published" },
+  { label: "Projects Delivered", value: "11" },
+  { label: "Organizations Served", value: "7" },
   {
     label: "Solution Areas",
     value: "6",

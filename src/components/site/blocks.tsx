@@ -394,7 +394,9 @@ export function StatsBand() {
             <div className="h-full rounded-2xl border border-border p-5 text-center shadow-soft sm:p-6 lg:p-7">
               <p className="text-4xl font-extrabold text-gradient-brand">{stat.value}</p>
               <p className="mt-2 text-sm font-semibold">{stat.label}</p>
-              <p className="mt-1 text-xs text-muted-foreground">{stat.note}</p>
+              {stat.note ? (
+                <p className="mt-1 text-xs text-muted-foreground">{stat.note}</p>
+              ) : null}
             </div>
           </Reveal>
         ))}
