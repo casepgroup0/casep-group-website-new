@@ -56,7 +56,7 @@ function ServiceDetail() {
         </Button>
       </PageHero>
 
-      <div className="lg:-mt-16">
+      <div className="lg:-mt-32">
         <Section>
           <div className="grid gap-8 lg:grid-cols-2">
             <Reveal>
@@ -79,7 +79,7 @@ function ServiceDetail() {
         </Section>
       </div>
 
-      <div className="lg:-mt-16">
+      <div className="lg:-mt-32">
         <Section tone="surface">
           <div className="grid gap-12 lg:grid-cols-2">
             <div>
@@ -127,11 +127,11 @@ function ServiceDetail() {
         </Section>
       </div>
 
-      <div className="lg:-mt-16">
+      <div className="lg:-mt-32">
         <ProcessTimeline />
       </div>
 
-      <div className="lg:-mt-16">
+      <div className="lg:-mt-32">
         <Section tone="surface">
           <SectionHeading eyebrow="FAQs" title="Common Questions" />
           <Reveal className="mt-8 max-w-3xl">
@@ -151,7 +151,7 @@ function ServiceDetail() {
         </Section>
       </div>
 
-      <div className="lg:-mt-16">
+      <div className="lg:-mt-32">
         <CTASection title={`Ready to talk about ${service.title.toLowerCase()}?`} />
       </div>
     </>
