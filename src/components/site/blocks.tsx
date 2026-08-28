@@ -100,7 +100,9 @@ export function SolutionsGrid({
       tone={tone}
       id="solutions"
       decorated
-      className={hideHeading ? "pt-4! sm:pt-6! md:pt-8! lg:pt-10!" : ""}
+      {...(hideHeading
+        ? { className: "pt-4! sm:pt-6! md:pt-8! lg:pt-10!" }
+        : {})}
     >
       {hideHeading ? null : (
         <SectionHeading
@@ -439,10 +441,12 @@ export function CTASection({
   title = "Ready to Transform the Way Your Organization Works?",
   description = "Whether you need a custom software solution, a modern digital presence, cloud infrastructure, or business process automation, let's discuss how technology can help your organization move forward.",
   className,
+  hideSolutionsLink = false,
 }: {
   title?: string;
   description?: string;
   className?: string;
+  hideSolutionsLink?: boolean;
 }) {
   return (
     <section className={cn("py-14 sm:py-16 md:py-20 lg:py-24", className)}>
@@ -458,9 +462,11 @@ export function CTASection({
                 <Button asChild variant="brand" size="default">
                   <Link to="/contact" search={{} as any}>Start a Project</Link>
                 </Button>
-                <Button asChild variant="onDark" size="default">
-                  <Link to="/solutions">Explore Our Solutions</Link>
-                </Button>
+                {hideSolutionsLink ? null : (
+                  <Button asChild variant="onDark" size="default">
+                    <Link to="/solutions">Explore Our Solutions</Link>
+                  </Button>
+                )}
               </div>
             </div>
           </div>
