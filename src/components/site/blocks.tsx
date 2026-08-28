@@ -28,13 +28,15 @@ function useSwipeNavigation(itemCount: number, setActiveSlide: (updater: (prev: 
   const touchDeltaX = useRef(0);
 
   const onTouchStart = (e: React.TouchEvent<HTMLDivElement>) => {
-    touchStartX.current = e.touches[0]?.clientX ?? null;
+    if (e.touches[0]) {
+      touchStartX.current = e.touches[0].clientX;
+    }
     touchDeltaX.current = 0;
   };
 
   const onTouchMove = (e: React.TouchEvent<HTMLDivElement>) => {
-    if (touchStartX.current === null) return;
-    touchDeltaX.current = (e.touches[0]?.clientX ?? 0) - touchStartX.current;
+    if (touchStartX.current === null || !e.touches[0]) return;
+    touchDeltaX.current = e.touches[0].clientX - touchStartX.current;
   };
 
   const onTouchEnd = () => {
@@ -624,7 +626,7 @@ export function InsightsGrid({ tone = "default" }: { tone?: "default" | "surface
       <div className="mt-8 grid grid-cols-2 gap-3 sm:mt-10 sm:grid-cols-2 sm:gap-6 md:mt-12 lg:grid-cols-3">
         {insights.map((post, i) => (
           <Reveal key={post.slug} delay={i * 50} as="article">
-            <div className="flex aspect-square flex-col items-start justify-center rounded-lg border border-border p-3 shadow-soft transition-all duration-300 hover:-translate-y-1 hover:shadow-lift sm:aspect-auto sm:h-full sm:justify-start sm:rounded-2xl sm:p-6 lg:p-7">
+            <div className="flex aspect-[2/1] flex-col items-start justify-center rounded-lg border border-border p-3 shadow-soft transition-all duration-300 hover:-translate-y-1 hover:shadow-lift sm:aspect-auto sm:h-full sm:justify-start sm:rounded-2xl sm:p-6 lg:p-7">
               <div className="flex items-center justify-between gap-3 sm:w-full">
                 <span className="text-[10px] font-semibold uppercase tracking-wide text-primary sm:text-xs">
                   {post.category}
