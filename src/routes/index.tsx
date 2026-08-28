@@ -10,7 +10,6 @@ import {
   DifferentiatorBand,
   IndustriesGrid,
   InsightsGrid,
-  ProcessTimeline,
   ServicesGrid,
   SolutionsGrid,
   StatsBand,
@@ -240,7 +239,6 @@ function Home() {
 
       <WhyGrid />
       <IndustriesGrid tone="default" />
-      <ProcessTimeline />
       <DifferentiatorBand />
       <TechnologyStrip />
       <CaseStudiesGrid />
