@@ -28,17 +28,13 @@ function useSwipeNavigation(itemCount: number, setActiveSlide: (updater: (prev: 
   const touchDeltaX = useRef(0);
 
   const onTouchStart = (e: React.TouchEvent<HTMLDivElement>) => {
-    const touch = e.touches[0];
-    if (!touch) return;
-    touchStartX.current = touch.clientX;
+    touchStartX.current = e.touches[0]?.clientX ?? null;
     touchDeltaX.current = 0;
   };
 
   const onTouchMove = (e: React.TouchEvent<HTMLDivElement>) => {
     if (touchStartX.current === null) return;
-    const touch = e.touches[0];
-    if (!touch) return;
-    touchDeltaX.current = touch.clientX - touchStartX.current;
+    touchDeltaX.current = (e.touches[0]?.clientX ?? 0) - touchStartX.current;
   };
 
   const onTouchEnd = () => {
@@ -625,22 +621,24 @@ export function InsightsGrid({ tone = "default" }: { tone?: "default" | "surface
         title="Perspectives on Technology and Operations."
         description="Planned articles on the topics organizations ask us about most. These outlines are not yet published pieces."
       />
-      <div className="mt-8 grid gap-5 sm:mt-10 sm:grid-cols-2 sm:gap-6 md:mt-12 lg:grid-cols-3">
+      <div className="mt-8 grid grid-cols-2 gap-3 sm:mt-10 sm:grid-cols-2 sm:gap-6 md:mt-12 lg:grid-cols-3">
         {insights.map((post, i) => (
           <Reveal key={post.slug} delay={i * 50} as="article">
-            <div className="flex h-full flex-col rounded-2xl border border-border p-5 shadow-soft transition-all duration-300 hover:-translate-y-1 hover:shadow-lift sm:p-6 lg:p-7">
-              <div className="flex items-center justify-between gap-3">
-                <span className="text-xs font-semibold uppercase tracking-wide text-primary">
+            <div className="flex aspect-square flex-col items-start justify-center rounded-lg border border-border p-3 shadow-soft transition-all duration-300 hover:-translate-y-1 hover:shadow-lift sm:aspect-auto sm:h-full sm:justify-start sm:rounded-2xl sm:p-6 lg:p-7">
+              <div className="flex items-center justify-between gap-3 sm:w-full">
+                <span className="text-[10px] font-semibold uppercase tracking-wide text-primary sm:text-xs">
                   {post.category}
                 </span>
                 {post.draft ? (
-                  <span className="rounded-full px-2.5 py-1 text-[0.65rem] font-semibold uppercase tracking-wide text-muted-foreground">
+                  <span className="hidden rounded-full px-2.5 py-1 text-[0.65rem] font-semibold uppercase tracking-wide text-muted-foreground sm:inline-block">
                     Draft
                   </span>
                 ) : null}
               </div>
-              <h3 className="mt-3 text-lg font-bold leading-snug">{post.title}</h3>
-              <p className="mt-3 flex-1 text-sm leading-relaxed text-muted-foreground">
+              <h3 className="mt-2 line-clamp-3 text-xs font-bold leading-snug sm:mt-3 sm:line-clamp-none sm:text-lg">
+                {post.title}
+              </h3>
+              <p className="mt-3 hidden flex-1 text-sm leading-relaxed text-muted-foreground sm:block">
                 {post.excerpt}
               </p>
             </div>
