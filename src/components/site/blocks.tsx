@@ -440,6 +440,9 @@ export function CTASection({
                 <Button asChild variant="brand" size="default">
                   <Link to="/contact" search={{} as any}>Start a Project</Link>
                 </Button>
+                <Button asChild variant="onDark" size="default">
+                  <Link to="/solutions">Explore Our Solutions</Link>
+                </Button>
               </div>
             </div>
           </div>
