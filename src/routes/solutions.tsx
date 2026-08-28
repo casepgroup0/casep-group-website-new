@@ -39,7 +39,7 @@ function SolutionsPage() {
           <Link to="/products">See Our Products</Link>
         </Button>
       </PageHero>
-      <div className="lg:-mt-36">
+      <div className="lg:-mt-[8.25rem]">
         <SolutionsGrid hideHeading />
       </div>
       <div className="lg:-mt-32">

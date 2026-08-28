@@ -46,7 +46,7 @@ function ServiceDetail() {
     <>
       <PageHero eyebrow={service.title} title={service.hero} description={service.short}>
         <Button asChild variant="brand" size="xl">
-          <Link to="/contact">Start a Project</Link>
+          <Link to="/contact" search={{ type: "inquiry" }}>Start a Project</Link>
         </Button>
         <Button asChild variant="onDark" size="xl">
           <Link to="/services">
