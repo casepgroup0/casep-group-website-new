@@ -56,94 +56,104 @@ function ServiceDetail() {
         </Button>
       </PageHero>
 
-      <Section>
-        <div className="grid gap-8 lg:grid-cols-2">
-          <Reveal>
-            <div className="h-full rounded-2xl border border-border p-8 shadow-soft">
-              <h2 className="text-2xl font-bold">The problem</h2>
-              <p className="mt-4 text-base leading-relaxed text-muted-foreground">
-                {service.problem}
-              </p>
-            </div>
-          </Reveal>
-          <Reveal delay={80}>
-            <div className="h-full rounded-2xl border border-primary/25 p-8">
-              <h2 className="text-2xl font-bold">Our approach</h2>
-              <p className="mt-4 text-base leading-relaxed text-muted-foreground">
-                {service.solution}
-              </p>
-            </div>
-          </Reveal>
-        </div>
-      </Section>
-
-      <Section tone="surface">
-        <div className="grid gap-12 lg:grid-cols-2">
-          <div>
-            <SectionHeading eyebrow="Capabilities" title="What This Includes" />
-            <ul className="mt-8 space-y-3">
-              {service.capabilities.map((item, i) => (
-                <Reveal key={item} delay={i * 40} as="li">
-                  <div className="flex items-start gap-3 rounded-xl border border-border px-5 py-4 shadow-soft">
-                    <Check className="mt-0.5 h-4 w-4 shrink-0 text-primary" aria-hidden="true" />
-                    <span className="text-sm">{item}</span>
-                  </div>
-                </Reveal>
-              ))}
-            </ul>
+      <div className="lg:-mt-16">
+        <Section>
+          <div className="grid gap-8 lg:grid-cols-2">
+            <Reveal>
+              <div className="h-full rounded-2xl border border-border p-8 shadow-soft">
+                <h2 className="text-2xl font-bold">The problem</h2>
+                <p className="mt-4 text-base leading-relaxed text-muted-foreground">
+                  {service.problem}
+                </p>
+              </div>
+            </Reveal>
+            <Reveal delay={80}>
+              <div className="h-full rounded-2xl border border-primary/25 p-8">
+                <h2 className="text-2xl font-bold">Our approach</h2>
+                <p className="mt-4 text-base leading-relaxed text-muted-foreground">
+                  {service.solution}
+                </p>
+              </div>
+            </Reveal>
           </div>
-          <div>
-            <SectionHeading eyebrow="Benefits" title="What Changes for You" />
-            <ul className="mt-8 space-y-3">
-              {service.benefits.map((item, i) => (
-                <Reveal key={item} delay={i * 40} as="li">
-                  <div className="flex items-start gap-3 rounded-xl border border-border px-5 py-4 shadow-soft">
-                    <Check className="mt-0.5 h-4 w-4 shrink-0 text-cyan" aria-hidden="true" />
-                    <span className="text-sm">{item}</span>
-                  </div>
-                </Reveal>
-              ))}
-            </ul>
-            <div className="mt-10">
-              <h3 className="text-sm font-semibold uppercase tracking-wide text-muted-foreground">
-                Relevant technologies
-              </h3>
-              <ul className="mt-4 flex flex-wrap gap-2">
-                {service.technologies.map((tech) => (
-                  <li
-                    key={tech}
-                    className="rounded-full border border-border px-3.5 py-1.5 text-xs font-medium text-muted-foreground"
-                  >
-                    {tech}
-                  </li>
+        </Section>
+      </div>
+
+      <div className="lg:-mt-16">
+        <Section tone="surface">
+          <div className="grid gap-12 lg:grid-cols-2">
+            <div>
+              <SectionHeading eyebrow="Capabilities" title="What This Includes" />
+              <ul className="mt-8 space-y-3">
+                {service.capabilities.map((item, i) => (
+                  <Reveal key={item} delay={i * 40} as="li">
+                    <div className="flex items-start gap-3 rounded-xl border border-border px-5 py-4 shadow-soft">
+                      <Check className="mt-0.5 h-4 w-4 shrink-0 text-primary" aria-hidden="true" />
+                      <span className="text-sm">{item}</span>
+                    </div>
+                  </Reveal>
                 ))}
               </ul>
             </div>
+            <div>
+              <SectionHeading eyebrow="Benefits" title="What Changes for You" />
+              <ul className="mt-8 space-y-3">
+                {service.benefits.map((item, i) => (
+                  <Reveal key={item} delay={i * 40} as="li">
+                    <div className="flex items-start gap-3 rounded-xl border border-border px-5 py-4 shadow-soft">
+                      <Check className="mt-0.5 h-4 w-4 shrink-0 text-cyan" aria-hidden="true" />
+                      <span className="text-sm">{item}</span>
+                    </div>
+                  </Reveal>
+                ))}
+              </ul>
+              <div className="mt-10">
+                <h3 className="text-sm font-semibold uppercase tracking-wide text-muted-foreground">
+                  Relevant technologies
+                </h3>
+                <ul className="mt-4 flex flex-wrap gap-2">
+                  {service.technologies.map((tech) => (
+                    <li
+                      key={tech}
+                      className="rounded-full border border-border px-3.5 py-1.5 text-xs font-medium text-muted-foreground"
+                    >
+                      {tech}
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            </div>
           </div>
-        </div>
-      </Section>
+        </Section>
+      </div>
 
-      <ProcessTimeline />
+      <div className="lg:-mt-16">
+        <ProcessTimeline />
+      </div>
 
-      <Section tone="surface">
-        <SectionHeading eyebrow="FAQs" title="Common Questions" />
-        <Reveal className="mt-8 max-w-3xl">
-          <Accordion type="single" collapsible className="w-full">
-            {service.faqs.map((faq, i) => (
-              <AccordionItem key={faq.q} value={`item-${i}`}>
-                <AccordionTrigger className="text-left text-base font-semibold">
-                  {faq.q}
-                </AccordionTrigger>
-                <AccordionContent className="text-sm leading-relaxed text-muted-foreground">
-                  {faq.a}
-                </AccordionContent>
-              </AccordionItem>
-            ))}
-          </Accordion>
-        </Reveal>
-      </Section>
+      <div className="lg:-mt-16">
+        <Section tone="surface">
+          <SectionHeading eyebrow="FAQs" title="Common Questions" />
+          <Reveal className="mt-8 max-w-3xl">
+            <Accordion type="single" collapsible className="w-full">
+              {service.faqs.map((faq, i) => (
+                <AccordionItem key={faq.q} value={`item-${i}`}>
+                  <AccordionTrigger className="text-left text-base font-semibold">
+                    {faq.q}
+                  </AccordionTrigger>
+                  <AccordionContent className="text-sm leading-relaxed text-muted-foreground">
+                    {faq.a}
+                  </AccordionContent>
+                </AccordionItem>
+              ))}
+            </Accordion>
+          </Reveal>
+        </Section>
+      </div>
 
-      <CTASection title={`Ready to talk about ${service.title.toLowerCase()}?`} />
+      <div className="lg:-mt-16">
+        <CTASection title={`Ready to talk about ${service.title.toLowerCase()}?`} />
+      </div>
     </>
   );
 }
