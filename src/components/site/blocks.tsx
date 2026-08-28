@@ -85,17 +85,25 @@ export function ServicesGrid({ tone = "default" }: { tone?: "default" | "surface
   );
 }
 
-export function SolutionsGrid({ tone = "default" }: { tone?: "default" | "surface" }) {
+export function SolutionsGrid({
+  tone = "default",
+  hideHeading = false,
+}: {
+  tone?: "default" | "surface";
+  hideHeading?: boolean;
+}) {
   const [activeIndex, setActiveIndex] = useState<number | null>(null);
   const active = activeIndex !== null ? solutions[activeIndex] : null;
 
   return (
     <Section tone={tone} id="solutions" decorated>
-      <SectionHeading
-        eyebrow="Solutions"
-        title="Solutions That Solve Business Problems."
-        description="We organize our work around the operational problems organizations face, not around technology labels."
-      />
+      {hideHeading ? null : (
+        <SectionHeading
+          eyebrow="Solutions"
+          title="Solutions That Solve Business Problems."
+          description="We organize our work around the operational problems organizations face, not around technology labels."
+        />
+      )}
       <div className="mt-8 grid grid-cols-5 gap-1.5 sm:mt-10 sm:grid-cols-2 sm:gap-6 md:mt-12 lg:grid-cols-3">
         {solutions.map((solution, i) => {
           const isActive = activeIndex === i;

@@ -33,13 +33,13 @@ function SolutionsPage() {
       <PageHero
         eyebrow="Solutions"
         title="Solutions That Solve Business Problems."
-        description="We start with the operational problem — slow admissions, manual invoicing, scattered records — and design the system that removes it."
+        description="We start with identifying the operational problems; slow admissions, manual invoicing, scattered records, then design the system that removes it."
       >
         <Button asChild variant="onDark" size="xl">
           <Link to="/products">See Our Products</Link>
         </Button>
       </PageHero>
-      <SolutionsGrid />
+      <SolutionsGrid hideHeading />
       <DifferentiatorBand />
       <IndustriesGrid />
       <CTASection />
