@@ -96,7 +96,12 @@ export function SolutionsGrid({
   const active = activeIndex !== null ? solutions[activeIndex] : null;
 
   return (
-    <Section tone={tone} id="solutions" decorated>
+    <Section
+      tone={tone}
+      id="solutions"
+      decorated
+      className={hideHeading ? "pt-4! sm:pt-6! md:pt-8! lg:pt-10!" : ""}
+    >
       {hideHeading ? null : (
         <SectionHeading
           eyebrow="Solutions"
@@ -104,7 +109,12 @@ export function SolutionsGrid({
           description="We organize our work around the operational problems organizations face, not around technology labels."
         />
       )}
-      <div className="mt-8 grid grid-cols-5 gap-1.5 sm:mt-10 sm:grid-cols-2 sm:gap-6 md:mt-12 lg:grid-cols-3">
+      <div
+        className={cn(
+          "grid grid-cols-5 gap-1.5 sm:grid-cols-2 sm:gap-6 lg:grid-cols-3",
+          hideHeading ? "mt-0" : "mt-8 sm:mt-10 md:mt-12",
+        )}
+      >
         {solutions.map((solution, i) => {
           const isActive = activeIndex === i;
           return (

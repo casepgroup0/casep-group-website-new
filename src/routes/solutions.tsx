@@ -40,9 +40,15 @@ function SolutionsPage() {
         </Button>
       </PageHero>
       <SolutionsGrid hideHeading />
-      <DifferentiatorBand />
-      <IndustriesGrid />
-      <CTASection />
+      <div className="lg:-mt-16">
+        <DifferentiatorBand />
+      </div>
+      <div className="lg:-mt-16">
+        <IndustriesGrid />
+      </div>
+      <div className="lg:-mt-16">
+        <CTASection />
+      </div>
     </>
   );
 }
