@@ -6,6 +6,7 @@ import {
   IndustriesGrid,
   PageHero,
   SolutionsGrid,
+  TechnologyStrip,
 } from "@/components/site/blocks";
 
 const title = "Solutions — Systems That Solve Business Problems | CASEP GROUP";
@@ -44,6 +45,9 @@ function SolutionsPage() {
       </div>
       <div className="lg:-mt-32">
         <DifferentiatorBand />
+      </div>
+      <div className="lg:-mt-32">
+        <TechnologyStrip />
       </div>
       <div className="lg:-mt-32">
         <IndustriesGrid />

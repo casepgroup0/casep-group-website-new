@@ -7,13 +7,9 @@ import { Section, SectionHeading } from "@/components/site/Section";
 import {
   CTASection,
   CaseStudiesGrid,
-  DifferentiatorBand,
-  IndustriesGrid,
   InsightsGrid,
   ServicesGrid,
-  SolutionsGrid,
   StatsBand,
-  TechnologyStrip,
   TestimonialsGrid,
   WhyGrid,
 } from "@/components/site/blocks";
@@ -161,9 +157,9 @@ function Home() {
       </Section>
 
       <ServicesGrid tone="surface" />
-      <SolutionsGrid />
 
       {/* Featured product */}
+      <div className="lg:-mt-16">
       <section className="relative overflow-hidden py-14 text-navy-foreground sm:py-16 md:py-20 lg:pt-10 lg:pb-14">
         <div className="container-page relative z-10">
           <div className="grid items-center gap-8 md:grid-cols-2 md:gap-10 lg:items-start lg:gap-12">
@@ -236,12 +232,12 @@ function Home() {
           </Reveal>
         </div>
       </section>
+      </div>
 
       <WhyGrid />
-      <IndustriesGrid tone="default" />
-      <DifferentiatorBand />
-      <TechnologyStrip />
-      <CaseStudiesGrid />
+      <div className="lg:-mt-16">
+        <CaseStudiesGrid />
+      </div>
       <StatsBand />
       <TestimonialsGrid />
       <InsightsGrid tone="surface" />
