@@ -211,7 +211,7 @@ export function ProcessTimeline() {
         {processSteps.map((step, i) => (
           <Reveal key={step.number} delay={i * 60} as="li">
             <div className="relative h-full rounded-2xl border border-border p-5 shadow-soft sm:p-6 lg:p-7">
-              <span className="text-sm font-bold text-gradient-brand">{step.number}</span>
+              <span className="text-sm font-bold text-gradient-brand">We</span>
               <h3 className="mt-2 text-lg font-bold">{step.title}</h3>
               <p className="mt-3 text-sm leading-relaxed text-muted-foreground">
                 {step.description}
