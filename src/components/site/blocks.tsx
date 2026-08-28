@@ -28,15 +28,17 @@ function useSwipeNavigation(itemCount: number, setActiveSlide: (updater: (prev: 
   const touchDeltaX = useRef(0);
 
   const onTouchStart = (e: React.TouchEvent<HTMLDivElement>) => {
-    if (e.touches[0]) {
-      touchStartX.current = e.touches[0].clientX;
-    }
+    const touch = e.touches[0];
+    if (!touch) return;
+    touchStartX.current = touch.clientX;
     touchDeltaX.current = 0;
   };
 
   const onTouchMove = (e: React.TouchEvent<HTMLDivElement>) => {
-    if (touchStartX.current === null || !e.touches[0]) return;
-    touchDeltaX.current = e.touches[0].clientX - touchStartX.current;
+    if (touchStartX.current === null) return;
+    const touch = e.touches[0];
+    if (!touch) return;
+    touchDeltaX.current = touch.clientX - touchStartX.current;
   };
 
   const onTouchEnd = () => {
@@ -104,7 +106,7 @@ export function PageHero({
   children?: ReactNode;
 }) {
   return (
-    <section className="relative overflow-hidden text-navy-foreground">
+    <section className="relative overflow-hidden bg-gradient-navy text-navy-foreground">
       <div className="container-page relative py-14 sm:py-16 md:py-20 lg:py-28">
         <Reveal className="max-w-3xl">
           <p className="text-sm font-semibold tracking-wide text-cyan">{eyebrow}</p>
