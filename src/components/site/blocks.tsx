@@ -1,4 +1,4 @@
-import { useEffect, useState, type ReactNode } from "react";
+import { useEffect, useRef, useState, type ReactNode } from "react";
 import { Link } from "@tanstack/react-router";
 import { ArrowRight, Quote } from "lucide-react";
 import { Button } from "@/components/ui/button";
@@ -18,6 +18,77 @@ import {
   testimonials,
   whyCasep,
 } from "@/data/site";
+
+// Shared swipe gesture handling for the mobile slideshows below.
+// Swipe left -> next card, swipe right -> previous card.
+const SWIPE_THRESHOLD_PX = 40;
+
+function useSwipeNavigation(itemCount: number, setActiveSlide: (updater: (prev: number) => number) => void) {
+  const touchStartX = useRef<number | null>(null);
+  const touchDeltaX = useRef(0);
+
+  const onTouchStart = (e: React.TouchEvent<HTMLDivElement>) => {
+    touchStartX.current = e.touches[0].clientX;
+    touchDeltaX.current = 0;
+  };
+
+  const onTouchMove = (e: React.TouchEvent<HTMLDivElement>) => {
+    if (touchStartX.current === null) return;
+    touchDeltaX.current = e.touches[0].clientX - touchStartX.current;
+  };
+
+  const onTouchEnd = () => {
+    if (touchDeltaX.current <= -SWIPE_THRESHOLD_PX) {
+      setActiveSlide((prev) => (prev + 1) % itemCount);
+    } else if (touchDeltaX.current >= SWIPE_THRESHOLD_PX) {
+      setActiveSlide((prev) => (prev - 1 + itemCount) % itemCount);
+    }
+    touchStartX.current = null;
+    touchDeltaX.current = 0;
+  };
+
+  return {
+    onTouchStart,
+    onTouchMove,
+    onTouchEnd,
+    style: { touchAction: "pan-y" } as const,
+  };
+}
+
+// Shared, higher-contrast progress dots for the mobile slideshows below.
+function SlideDots({
+  count,
+  activeIndex,
+  onSelect,
+  getLabel,
+}: {
+  count: number;
+  activeIndex: number;
+  onSelect: (index: number) => void;
+  getLabel: (index: number) => string;
+}) {
+  return (
+    <div className="mt-4 flex justify-center gap-1.5">
+      {Array.from({ length: count }).map((_, i) => (
+        <button
+          key={i}
+          type="button"
+          aria-label={getLabel(i)}
+          aria-current={i === activeIndex}
+          onClick={() => onSelect(i)}
+          className="p-1.5"
+        >
+          <span
+            className={cn(
+              "block h-2 rounded-full transition-all duration-300",
+              i === activeIndex ? "w-6 bg-primary" : "w-2 bg-muted-foreground/50",
+            )}
+          />
+        </button>
+      ))}
+    </div>
+  );
+}
 
 export function PageHero({
   eyebrow,
@@ -339,6 +410,7 @@ function CaseStudyCard({ study }: { study: (typeof caseStudies)[number] }) {
 
 export function CaseStudiesGrid() {
   const [activeSlide, setActiveSlide] = useState(0);
+  const swipeHandlers = useSwipeNavigation(caseStudies.length, setActiveSlide);
 
   // Mobile-only auto-advance: one card visible at a time, holding 12s per card.
   useEffect(() => {
@@ -365,9 +437,15 @@ export function CaseStudiesGrid() {
         ))}
       </div>
 
-      {/* Mobile only: one-card-at-a-time slideshow, sliding right to left */}
+      {/* Mobile only: one-card-at-a-time slideshow, sliding right to left, swipeable */}
       <div className="mt-8 sm:hidden">
-        <div className="overflow-hidden">
+        <div
+          className="overflow-hidden"
+          onTouchStart={swipeHandlers.onTouchStart}
+          onTouchMove={swipeHandlers.onTouchMove}
+          onTouchEnd={swipeHandlers.onTouchEnd}
+          style={swipeHandlers.style}
+        >
           <div
             className="flex transition-transform duration-700 ease-in-out"
             style={{ transform: `translateX(-${activeSlide * 100}%)` }}
@@ -380,21 +458,12 @@ export function CaseStudiesGrid() {
           </div>
         </div>
 
-        <div className="mt-4 flex justify-center gap-2">
-          {caseStudies.map((study, i) => (
-            <button
-              key={study.title}
-              type="button"
-              aria-label={`Show case study ${i + 1} of ${caseStudies.length}`}
-              aria-current={i === activeSlide}
-              onClick={() => setActiveSlide(i)}
-              className={cn(
-                "h-1.5 rounded-full transition-all duration-300",
-                i === activeSlide ? "w-6 bg-primary" : "w-1.5 bg-border",
-              )}
-            />
-          ))}
-        </div>
+        <SlideDots
+          count={caseStudies.length}
+          activeIndex={activeSlide}
+          onSelect={setActiveSlide}
+          getLabel={(i) => `Show case study ${i + 1} of ${caseStudies.length}`}
+        />
       </div>
     </Section>
   );
@@ -402,6 +471,7 @@ export function CaseStudiesGrid() {
 
 export function TestimonialsGrid() {
   const [activeSlide, setActiveSlide] = useState(0);
+  const swipeHandlers = useSwipeNavigation(testimonials.length, setActiveSlide);
 
   // Mobile-only auto-advance: one card visible at a time, holding 15s per card.
   useEffect(() => {
@@ -436,9 +506,15 @@ export function TestimonialsGrid() {
         ))}
       </div>
 
-      {/* Mobile only: one-card-at-a-time slideshow, sliding right to left */}
+      {/* Mobile only: one-card-at-a-time slideshow, sliding right to left, swipeable */}
       <div className="mt-6 sm:hidden">
-        <div className="overflow-hidden">
+        <div
+          className="overflow-hidden"
+          onTouchStart={swipeHandlers.onTouchStart}
+          onTouchMove={swipeHandlers.onTouchMove}
+          onTouchEnd={swipeHandlers.onTouchEnd}
+          style={swipeHandlers.style}
+        >
           <div
             className="flex transition-transform duration-700 ease-in-out"
             style={{ transform: `translateX(-${activeSlide * 100}%)` }}
@@ -461,22 +537,12 @@ export function TestimonialsGrid() {
           </div>
         </div>
 
-        {/* Progress dots, tappable to jump to a card */}
-        <div className="mt-4 flex justify-center gap-2">
-          {testimonials.map((item, i) => (
-            <button
-              key={item.role}
-              type="button"
-              aria-label={`Show testimonial ${i + 1} of ${testimonials.length}`}
-              aria-current={i === activeSlide}
-              onClick={() => setActiveSlide(i)}
-              className={cn(
-                "h-1.5 rounded-full transition-all duration-300",
-                i === activeSlide ? "w-6 bg-primary" : "w-1.5 bg-border",
-              )}
-            />
-          ))}
-        </div>
+        <SlideDots
+          count={testimonials.length}
+          activeIndex={activeSlide}
+          onSelect={setActiveSlide}
+          getLabel={(i) => `Show testimonial ${i + 1} of ${testimonials.length}`}
+        />
       </div>
     </Section>
   );
@@ -494,6 +560,7 @@ function StatCard({ stat }: { stat: (typeof capabilityStats)[number] }) {
 
 export function StatsBand() {
   const [activeSlide, setActiveSlide] = useState(0);
+  const swipeHandlers = useSwipeNavigation(capabilityStats.length, setActiveSlide);
 
   // Mobile-only auto-advance: one stat visible at a time, holding 10s per card.
   useEffect(() => {
@@ -514,9 +581,15 @@ export function StatsBand() {
         ))}
       </div>
 
-      {/* Mobile only: one-card-at-a-time slideshow, sliding right to left */}
+      {/* Mobile only: one-card-at-a-time slideshow, sliding right to left, swipeable */}
       <div className="sm:hidden">
-        <div className="overflow-hidden">
+        <div
+          className="overflow-hidden"
+          onTouchStart={swipeHandlers.onTouchStart}
+          onTouchMove={swipeHandlers.onTouchMove}
+          onTouchEnd={swipeHandlers.onTouchEnd}
+          style={swipeHandlers.style}
+        >
           <div
             className="flex transition-transform duration-700 ease-in-out"
             style={{ transform: `translateX(-${activeSlide * 100}%)` }}
@@ -529,21 +602,12 @@ export function StatsBand() {
           </div>
         </div>
 
-        <div className="mt-4 flex justify-center gap-2">
-          {capabilityStats.map((stat, i) => (
-            <button
-              key={stat.label}
-              type="button"
-              aria-label={`Show stat ${i + 1} of ${capabilityStats.length}`}
-              aria-current={i === activeSlide}
-              onClick={() => setActiveSlide(i)}
-              className={cn(
-                "h-1.5 rounded-full transition-all duration-300",
-                i === activeSlide ? "w-6 bg-primary" : "w-1.5 bg-border",
-              )}
-            />
-          ))}
-        </div>
+        <SlideDots
+          count={capabilityStats.length}
+          activeIndex={activeSlide}
+          onSelect={setActiveSlide}
+          getLabel={(i) => `Show stat ${i + 1} of ${capabilityStats.length}`}
+        />
       </div>
     </Section>
   );
