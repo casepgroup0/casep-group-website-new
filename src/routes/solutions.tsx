@@ -39,7 +39,9 @@ function SolutionsPage() {
           <Link to="/products">See Our Products</Link>
         </Button>
       </PageHero>
-      <SolutionsGrid hideHeading />
+      <div className="lg:-mt-48">
+        <SolutionsGrid hideHeading />
+      </div>
       <div className="lg:-mt-32">
         <DifferentiatorBand />
       </div>
