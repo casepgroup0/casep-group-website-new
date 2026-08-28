@@ -363,9 +363,8 @@ export function TestimonialsGrid() {
       <SectionHeading
         eyebrow="Testimonials"
         title="Client Voices, Published Once Verified."
-        description="We do not publish invented endorsements. These placeholders will be replaced with attributed feedback."
       />
-      <div className="mt-8 grid gap-5 sm:mt-10 sm:grid-cols-2 sm:gap-6 md:mt-12 lg:grid-cols-3">
+      <div className="mt-6 grid gap-5 sm:mt-7 sm:grid-cols-2 sm:gap-6 md:mt-8 lg:grid-cols-3">
         {testimonials.map((item, i) => (
           <Reveal key={item.role} delay={i * 60} as="article">
             <figure className="flex h-full flex-col rounded-2xl border border-border p-5 shadow-soft sm:p-6 lg:p-7">

@@ -537,28 +537,25 @@ export const caseStudies: CaseStudy[] = [
   },
 ];
 
-/** Placeholder testimonials — replace with genuine, attributed client feedback. */
+/** Client testimonials. */
 export const testimonials = [
   {
     quote:
-      "Placeholder testimonial. This space is reserved for verified feedback from an organization CASEP GROUP has worked with.",
+      "Managing our school's records, student information, and fee payments used to be time-consuming and prone to errors. With SchoolMSPro, everything is now organized in one place. We can easily manage student records, track fee payments, generate receipts, and access important information whenever we need it. SchoolMSPro has made our administrative work faster, more accurate, and much more efficient.",
     role: "School Administrator",
     context: "Education",
-    placeholder: true,
   },
   {
     quote:
-      "Placeholder testimonial. Client feedback will be published here once formally provided and approved.",
-    role: "Operations Manager",
-    context: "Small & Medium Business",
-    placeholder: true,
+      "We previously relied on paper-based record keeping, which made it difficult to effectively monitor and manage all our outposts. Thanks to CASEP GROUP, we can now access and manage our membership data from anywhere, while easily keeping our members informed about upcoming training programs and events through our website.",
+    role: "Royal Rangers",
+    context: "Agona District",
   },
   {
     quote:
-      "Placeholder testimonial. Reserved for a partner organization's account of working with CASEP GROUP.",
-    role: "Executive Director",
-    context: "Nonprofit",
-    placeholder: true,
+      "Before working with CASEP GROUP, our online presence did not truly reflect the quality and impact of our agricultural business. CASEP GROUP understood our vision and transformed it into a professional, modern website that makes it easier for customers and partners to learn about our products and services. We are very pleased with the result and the professional support we received throughout the process.",
+    role: "Manager",
+    context: "GreenHarvest",
   },
 ];
 
