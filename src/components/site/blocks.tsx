@@ -315,16 +315,9 @@ export function TechnologyStrip() {
 function CaseStudyCard({ study }: { study: (typeof caseStudies)[number] }) {
   return (
     <div className="flex h-full flex-col rounded-2xl border border-border p-5 shadow-soft sm:p-6 lg:p-7">
-      <div className="flex items-center justify-between gap-3">
-        <span className="text-xs font-semibold uppercase tracking-wide text-primary">
-          {study.industry}
-        </span>
-        {study.placeholder ? (
-          <span className="rounded-full px-2.5 py-1 text-[0.65rem] font-semibold uppercase tracking-wide text-muted-foreground">
-            Example
-          </span>
-        ) : null}
-      </div>
+      <span className="text-xs font-semibold uppercase tracking-wide text-primary">
+        {study.industry}
+      </span>
       <h3 className="mt-3 text-lg font-bold">{study.title}</h3>
       <dl className="mt-4 space-y-3 text-sm leading-relaxed text-muted-foreground">
         <div>
@@ -347,11 +340,11 @@ function CaseStudyCard({ study }: { study: (typeof caseStudies)[number] }) {
 export function CaseStudiesGrid() {
   const [activeSlide, setActiveSlide] = useState(0);
 
-  // Mobile-only auto-advance: one card visible at a time, holding 20s per card.
+  // Mobile-only auto-advance: one card visible at a time, holding 12s per card.
   useEffect(() => {
     const timer = setInterval(() => {
       setActiveSlide((prev) => (prev + 1) % caseStudies.length);
-    }, 20000);
+    }, 12000);
     return () => clearInterval(timer);
   }, []);
 
@@ -410,11 +403,11 @@ export function CaseStudiesGrid() {
 export function TestimonialsGrid() {
   const [activeSlide, setActiveSlide] = useState(0);
 
-  // Mobile-only auto-advance: one card visible at a time, holding 20s per card.
+  // Mobile-only auto-advance: one card visible at a time, holding 15s per card.
   useEffect(() => {
     const timer = setInterval(() => {
       setActiveSlide((prev) => (prev + 1) % testimonials.length);
-    }, 20000);
+    }, 15000);
     return () => clearInterval(timer);
   }, []);
 
@@ -502,11 +495,11 @@ function StatCard({ stat }: { stat: (typeof capabilityStats)[number] }) {
 export function StatsBand() {
   const [activeSlide, setActiveSlide] = useState(0);
 
-  // Mobile-only auto-advance: one stat visible at a time, holding 20s per card.
+  // Mobile-only auto-advance: one stat visible at a time, holding 10s per card.
   useEffect(() => {
     const timer = setInterval(() => {
       setActiveSlide((prev) => (prev + 1) % capabilityStats.length);
-    }, 20000);
+    }, 10000);
     return () => clearInterval(timer);
   }, []);
 
