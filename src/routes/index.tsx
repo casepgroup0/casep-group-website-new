@@ -84,11 +84,21 @@ function Home() {
               CASEP GROUP helps schools, businesses, and organizations digitize operations, automate
               processes, and build scalable digital solutions that drive efficiency and growth.
             </p>
-            <div className="mt-6 flex flex-wrap gap-3 sm:mt-9">
-              <Button asChild variant="destructive" size="xl">
+            <div className="mt-6 flex flex-wrap gap-2 sm:mt-9 sm:gap-3">
+              <Button
+                asChild
+                variant="destructive"
+                size="xl"
+                className="h-10 px-4 text-sm sm:h-12 sm:px-8 sm:text-base"
+              >
                 <Link to="/contact" search={{ type: "inquiry" }}>Let&apos;s Work Together</Link>
               </Button>
-              <Button asChild variant="onDark" size="xl">
+              <Button
+                asChild
+                variant="onDark"
+                size="xl"
+                className="h-10 px-4 text-sm sm:h-12 sm:px-8 sm:text-base"
+              >
                 <Link to="/solutions">Explore Our Solutions</Link>
               </Button>
             </div>
