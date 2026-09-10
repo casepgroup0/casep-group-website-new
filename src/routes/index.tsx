@@ -64,6 +64,20 @@ const trustStrip = [
 function Home() {
   const product = products[0]!;
 
+  // Swap "Academic Years & Terms" (a two-line label) with "Financial
+  // Reporting" so it pairs with "Receipt Generation" instead of the
+  // shorter "Class Management" — avoids the awkward empty space that
+  // uneven row heights created in the two-column mobile layout.
+  const orderedFeatures = [...product.features];
+  const acadIdx = orderedFeatures.indexOf("Academic Years & Terms");
+  const finIdx = orderedFeatures.indexOf("Financial Reporting");
+  if (acadIdx !== -1 && finIdx !== -1) {
+    [orderedFeatures[acadIdx], orderedFeatures[finIdx]] = [
+      orderedFeatures[finIdx],
+      orderedFeatures[acadIdx],
+    ];
+  }
+
   return (
     <>
       {/* Hero */}
@@ -211,7 +225,7 @@ function Home() {
               equal-width columns that collided on the shorter row. */}
           <Reveal delay={200}>
             <div className="mt-8 flex flex-col gap-y-2.5 sm:mt-9 lg:gap-y-7">
-              {[product.features.slice(0, 6), product.features.slice(6)].map((row, rowIndex) => (
+              {[orderedFeatures.slice(0, 6), orderedFeatures.slice(6)].map((row, rowIndex) => (
                 <ul
                   key={rowIndex}
                   className="grid grid-cols-2 gap-x-4 gap-y-2.5 lg:flex lg:flex-nowrap lg:justify-between"
@@ -228,11 +242,21 @@ function Home() {
                 </ul>
               ))}
             </div>
-            <div className="mt-6 flex flex-wrap gap-3 sm:mt-9 lg:mt-12 lg:justify-center">
-              <Button asChild variant="brand" size="xl" className="lg:h-[42px] lg:px-6 lg:text-sm">
+            <div className="mt-6 flex flex-wrap gap-2 sm:mt-9 sm:gap-3 lg:mt-12 lg:justify-center">
+              <Button
+                asChild
+                variant="brand"
+                size="xl"
+                className="h-10 px-4 text-sm sm:h-12 sm:px-8 sm:text-base lg:h-[42px] lg:px-6 lg:text-sm"
+              >
                 <Link to="/products">Explore SchoolMSPro</Link>
               </Button>
-              <Button asChild variant="onDark" size="xl" className="lg:h-[42px] lg:px-6 lg:text-sm">
+              <Button
+                asChild
+                variant="onDark"
+                size="xl"
+                className="h-10 px-4 text-sm sm:h-12 sm:px-8 sm:text-base lg:h-[42px] lg:px-6 lg:text-sm"
+              >
                 <Link to="/contact" search={{ type: "demo" }}>Request a Demo</Link>
               </Button>
             </div>
