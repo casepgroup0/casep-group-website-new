@@ -102,9 +102,6 @@ function Home() {
                 <Link to="/solutions">Explore Our Solutions</Link>
               </Button>
             </div>
-            <p className="mt-6 text-sm text-navy-foreground/60 sm:mt-8">
-              Proudly Ghanaian. Built for a connected world.
-            </p>
           </Reveal>
         </div>
 
