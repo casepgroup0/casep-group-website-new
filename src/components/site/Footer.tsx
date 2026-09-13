@@ -20,7 +20,122 @@ export function Footer() {
       className="bg-photo-navy text-navy-foreground"
       style={{ backgroundImage: `url(${footerBg})` }}
     >
-      <div className="relative z-10 container-page grid gap-8 py-12 sm:gap-10 sm:py-14 md:grid-cols-3 md:gap-10 md:py-16 lg:grid-cols-2 lg:gap-12 lg:py-20">
+      {/* Mobile-only layout (below sm). Structurally different from the
+          sm/md/lg layout below (Socials stacks under Contact, Phone and
+          Location sit side by side, tagline moves under the logo), so it's
+          built as its own block rather than reusing the same markup with
+          responsive overrides. */}
+      <div className="relative z-10 container-page py-12 sm:hidden">
+        <div className="flex flex-col items-center text-center">
+          <div className="flex items-center gap-2.5">
+            <Logo className="h-8 w-8" />
+            <span className="text-lg font-extrabold tracking-tight">CASEP GROUP</span>
+          </div>
+          <p className="mt-3 text-xs text-navy-foreground/60">{company.tagline}</p>
+        </div>
+
+        <div className="mt-8 flex flex-col gap-8">
+          <div>
+            <h3 className="text-sm font-semibold uppercase tracking-wide text-navy-foreground/90">
+              Company
+            </h3>
+            <ul className="mt-4 space-y-2.5">
+              {companyLinks.map((link) => (
+                <li key={link.to}>
+                  <Link
+                    to={link.to}
+                    className="text-sm text-navy-foreground/70 transition-colors hover:text-cyan"
+                  >
+                    {link.label}
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          <div>
+            <h3 className="text-sm font-semibold uppercase tracking-wide text-navy-foreground/90">
+              Services
+            </h3>
+            <ul className="mt-4 space-y-2.5">
+              {services.map((service) => (
+                <li key={service.slug}>
+                  <Link
+                    to="/services/$slug"
+                    params={{ slug: service.slug }}
+                    className="text-sm text-navy-foreground/70 transition-colors hover:text-cyan"
+                  >
+                    {service.title}
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          <div>
+            <h3 className="text-center text-sm font-semibold uppercase tracking-wide text-navy-foreground/90">
+              Connect With Us
+            </h3>
+
+            <div className="mt-4">
+              <h4 className="text-sm font-semibold uppercase tracking-wide text-navy-foreground/90">
+                Contact
+              </h4>
+              <ul className="mt-4 space-y-2.5 text-sm text-navy-foreground/70">
+                <li className="flex items-center gap-2">
+                  <Mail className="h-4 w-4 shrink-0 text-cyan" aria-hidden="true" />
+                  <a
+                    href={`mailto:${company.email}`}
+                    className="transition-colors hover:text-cyan"
+                  >
+                    {company.email}
+                  </a>
+                </li>
+              </ul>
+              <div className="mt-2.5 grid grid-cols-2 gap-3 text-sm text-navy-foreground/70">
+                <div className="flex items-center gap-2">
+                  <Phone className="h-4 w-4 shrink-0 text-cyan" aria-hidden="true" />
+                  <a
+                    href={`tel:${company.phone.replace(/\s/g, "")}`}
+                    className="transition-colors hover:text-cyan"
+                  >
+                    {company.phone}
+                  </a>
+                </div>
+                <div className="flex items-center gap-2">
+                  <MapPin className="h-4 w-4 shrink-0 text-cyan" aria-hidden="true" />
+                  {company.location}
+                </div>
+              </div>
+            </div>
+
+            <div className="mt-6">
+              <h4 className="text-sm font-semibold uppercase tracking-wide text-navy-foreground/90">
+                Socials
+              </h4>
+              <ul className="mt-4 flex gap-2">
+                {socialLinks.map((social) => (
+                  <li key={social.label}>
+                    <a
+                      href={social.href}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      aria-label={social.label}
+                      title={social.label}
+                      className="inline-flex h-9 w-9 items-center justify-center rounded-md border border-navy-foreground/20 text-navy-foreground/80 transition-colors hover:border-cyan hover:text-cyan"
+                    >
+                      <SocialIcon name={social.icon} className="h-4 w-4" />
+                    </a>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      {/* sm/md/lg layout — unchanged */}
+      <div className="relative z-10 container-page hidden gap-8 py-12 sm:grid sm:gap-10 sm:py-14 md:grid-cols-3 md:gap-10 md:py-16 lg:grid-cols-2 lg:gap-12 lg:py-20">
         <div className="flex flex-col items-center text-center md:items-start md:text-left lg:col-span-2 lg:items-center lg:text-center">
           <div className="flex items-center gap-2.5">
             <Logo className="h-8 w-8" />
@@ -127,12 +242,12 @@ export function Footer() {
         </div>
       </div>
 
-      <div className="relative z-10 container-page pb-3 text-center sm:pb-4 sm:text-left lg:hidden">
+      <div className="relative z-10 container-page hidden pb-3 text-center sm:block sm:pb-4 sm:text-left lg:hidden">
         <p className="text-xs text-navy-foreground/60 sm:text-sm">{company.tagline}</p>
       </div>
 
       <div className="relative z-10 border-t border-navy-foreground/10">
-        <div className="container-page flex flex-row flex-wrap items-center justify-between gap-x-4 gap-y-1 py-6 text-xs text-navy-foreground/60">
+        <div className="container-page flex flex-row flex-wrap items-center justify-center gap-x-3 gap-y-1 py-6 text-[10px] text-navy-foreground/60 sm:justify-between sm:gap-x-4 sm:text-xs">
           <p>© 2026 CASEP GROUP. All Rights Reserved.</p>
           <p className="hidden lg:block">{company.tagline}</p>
           <p className="text-navy-foreground/40">Designed &amp; developed by CASEP GROUP</p>
