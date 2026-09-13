@@ -35,41 +35,43 @@ export function Footer() {
         </div>
 
         <div className="mt-8 flex flex-col gap-8">
-          <div>
-            <h3 className="text-sm font-semibold uppercase tracking-wide text-navy-foreground/90">
-              Company
-            </h3>
-            <ul className="mt-4 space-y-2.5">
-              {companyLinks.map((link) => (
-                <li key={link.to}>
-                  <Link
-                    to={link.to}
-                    className="text-sm text-navy-foreground/70 transition-colors hover:text-cyan"
-                  >
-                    {link.label}
-                  </Link>
-                </li>
-              ))}
-            </ul>
-          </div>
+          <div className="grid grid-cols-2 gap-4">
+            <div>
+              <h3 className="text-sm font-semibold uppercase tracking-wide text-navy-foreground/90">
+                Company
+              </h3>
+              <ul className="mt-4 space-y-2.5">
+                {companyLinks.map((link) => (
+                  <li key={link.to}>
+                    <Link
+                      to={link.to}
+                      className="text-sm text-navy-foreground/70 transition-colors hover:text-cyan"
+                    >
+                      {link.label}
+                    </Link>
+                  </li>
+                ))}
+              </ul>
+            </div>
 
-          <div>
-            <h3 className="text-sm font-semibold uppercase tracking-wide text-navy-foreground/90">
-              Services
-            </h3>
-            <ul className="mt-4 space-y-2.5">
-              {services.map((service) => (
-                <li key={service.slug}>
-                  <Link
-                    to="/services/$slug"
-                    params={{ slug: service.slug }}
-                    className="text-sm text-navy-foreground/70 transition-colors hover:text-cyan"
-                  >
-                    {service.title}
-                  </Link>
-                </li>
-              ))}
-            </ul>
+            <div>
+              <h3 className="text-sm font-semibold uppercase tracking-wide text-navy-foreground/90">
+                Services
+              </h3>
+              <ul className="mt-4 space-y-2.5">
+                {services.map((service) => (
+                  <li key={service.slug}>
+                    <Link
+                      to="/services/$slug"
+                      params={{ slug: service.slug }}
+                      className="text-sm text-navy-foreground/70 transition-colors hover:text-cyan"
+                    >
+                      {service.title}
+                    </Link>
+                  </li>
+                ))}
+              </ul>
+            </div>
           </div>
 
           <div>
@@ -77,59 +79,47 @@ export function Footer() {
               Connect With Us
             </h3>
 
-            <div className="mt-4">
-              <h4 className="text-sm font-semibold uppercase tracking-wide text-navy-foreground/90">
-                Contact
-              </h4>
-              <ul className="mt-4 space-y-2.5 text-sm text-navy-foreground/70">
-                <li className="flex items-center gap-2">
-                  <Mail className="h-4 w-4 shrink-0 text-cyan" aria-hidden="true" />
+            <ul className="mt-4 space-y-2.5 text-sm text-navy-foreground/70">
+              <li className="flex items-center gap-2">
+                <Phone className="h-4 w-4 shrink-0 text-cyan" aria-hidden="true" />
+                <a
+                  href={`tel:${company.phone.replace(/\s/g, "")}`}
+                  className="transition-colors hover:text-cyan"
+                >
+                  {company.phone}
+                </a>
+              </li>
+              <li className="flex items-center gap-2">
+                <Mail className="h-4 w-4 shrink-0 text-cyan" aria-hidden="true" />
+                <a
+                  href={`mailto:${company.email}`}
+                  className="transition-colors hover:text-cyan"
+                >
+                  {company.email}
+                </a>
+              </li>
+              <li className="flex items-center gap-2">
+                <MapPin className="h-4 w-4 shrink-0 text-cyan" aria-hidden="true" />
+                {company.location}
+              </li>
+            </ul>
+
+            <ul className="mt-4 flex gap-2">
+              {socialLinks.map((social) => (
+                <li key={social.label}>
                   <a
-                    href={`mailto:${company.email}`}
-                    className="transition-colors hover:text-cyan"
+                    href={social.href}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    aria-label={social.label}
+                    title={social.label}
+                    className="inline-flex h-9 w-9 items-center justify-center rounded-md border border-navy-foreground/20 text-navy-foreground/80 transition-colors hover:border-cyan hover:text-cyan"
                   >
-                    {company.email}
+                    <SocialIcon name={social.icon} className="h-4 w-4" />
                   </a>
                 </li>
-              </ul>
-              <div className="mt-2.5 grid grid-cols-2 gap-3 text-sm text-navy-foreground/70">
-                <div className="flex items-center gap-2">
-                  <Phone className="h-4 w-4 shrink-0 text-cyan" aria-hidden="true" />
-                  <a
-                    href={`tel:${company.phone.replace(/\s/g, "")}`}
-                    className="transition-colors hover:text-cyan"
-                  >
-                    {company.phone}
-                  </a>
-                </div>
-                <div className="flex items-center gap-2">
-                  <MapPin className="h-4 w-4 shrink-0 text-cyan" aria-hidden="true" />
-                  {company.location}
-                </div>
-              </div>
-            </div>
-
-            <div className="mt-6">
-              <h4 className="text-sm font-semibold uppercase tracking-wide text-navy-foreground/90">
-                Socials
-              </h4>
-              <ul className="mt-4 flex gap-2">
-                {socialLinks.map((social) => (
-                  <li key={social.label}>
-                    <a
-                      href={social.href}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      aria-label={social.label}
-                      title={social.label}
-                      className="inline-flex h-9 w-9 items-center justify-center rounded-md border border-navy-foreground/20 text-navy-foreground/80 transition-colors hover:border-cyan hover:text-cyan"
-                    >
-                      <SocialIcon name={social.icon} className="h-4 w-4" />
-                    </a>
-                  </li>
-                ))}
-              </ul>
-            </div>
+              ))}
+            </ul>
           </div>
         </div>
       </div>
