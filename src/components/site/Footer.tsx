@@ -35,7 +35,7 @@ export function Footer() {
         </div>
 
         <div className="mt-8 flex flex-col gap-8">
-          <div className="grid grid-cols-[96px_1fr] gap-3">
+          <div className="grid grid-cols-[2fr_3fr] gap-3">
             <div>
               <h3 className="text-sm font-semibold uppercase tracking-wide text-navy-foreground/90">
                 Company
