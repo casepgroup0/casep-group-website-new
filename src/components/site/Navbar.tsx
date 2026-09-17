@@ -4,7 +4,6 @@ import { Menu, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 import { navLinks } from "@/data/site";
-import { ThemeToggle } from "./ThemeToggle";
 import { Logo } from "./Logo";
 
 export function Navbar() {
@@ -71,7 +70,6 @@ export function Navbar() {
         </ul>
 
         <div className="flex items-center gap-2">
-          <ThemeToggle className="hidden sm:inline-flex" />
           <Button asChild variant="brand" size="default" className="hidden lg:inline-flex">
             <Link to="/contact">Let&apos;s Work Together</Link>
           </Button>
@@ -102,11 +100,10 @@ export function Navbar() {
                 </Link>
               </li>
             ))}
-            <li className="mt-3 flex items-center gap-3 pb-2">
-              <Button asChild variant="brand" size="default" className="flex-1">
+            <li className="mt-3 pb-2">
+              <Button asChild variant="brand" size="default" className="w-full">
                 <Link to="/contact">Let&apos;s Work Together</Link>
               </Button>
-              <ThemeToggle className="h-11 w-11 sm:hidden" />
             </li>
           </ul>
         </div>

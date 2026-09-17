@@ -12,9 +12,7 @@ import { useEffect, type ReactNode } from "react";
 import appCss from "../styles.css?url";
 import { Navbar } from "@/components/site/Navbar";
 import { Footer } from "@/components/site/Footer";
-import { BackButton } from "@/components/site/BackButton";
 import { reportLovableError } from "../lib/lovable-error-reporting";
-import siteBackdrop from "@/assets/bg-atmosphere.jpg";
 
 function NotFoundComponent() {
   return (
@@ -118,7 +116,7 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
 
 function RootShell({ children }: { children: ReactNode }) {
   return (
-    <html lang="en">
+    <html lang="en" className="dark">
       <head>
         <HeadContent />
       </head>
@@ -135,17 +133,7 @@ function RootComponent() {
 
   return (
     <QueryClientProvider client={queryClient}>
-      {/* Fixed, full-viewport photographic backdrop — sits behind every page.
-          Two layers: the image itself, then a navy/light gradient tint on
-          top so text stays legible regardless of what scrolls over it. */}
-      <div
-        className="site-backdrop"
-        style={{ backgroundImage: `url(${siteBackdrop})` }}
-        aria-hidden="true"
-      />
-      <div className="site-backdrop-overlay" aria-hidden="true" />
-
-      <div className="relative flex min-h-screen flex-col">
+      <div className="flex min-h-screen flex-col">
         <a
           href="#main"
           className="sr-only focus:not-sr-only focus:absolute focus:left-4 focus:top-4 focus:z-[60] focus:rounded-md focus:bg-primary focus:px-4 focus:py-2 focus:text-primary-foreground"
@@ -158,7 +146,6 @@ function RootComponent() {
           <Outlet />
         </main>
         <Footer />
-        <BackButton />
       </div>
     </QueryClientProvider>
   );
