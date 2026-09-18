@@ -99,8 +99,8 @@
   --ring: oklch(0.518 0.164 259.3);
 
   /* Brand */
-  --navy-deep: oklch(0.196 0.043 252.5); /* #071A2B */
-  --navy: oklch(0.264 0.062 258.4); /* #0B2545 */
+  --navy-deep: oklch(0.282 0.076 251.9); /* #062A4D — deep Azure Blue */
+  --navy: oklch(0.568 0.167 251.3); /* #0078D4 — Azure Blue (Bright Process Blue) */
   --navy-foreground: oklch(0.985 0.004 247.9);
   --cyan: oklch(0.634 0.106 202.4); /* #0097A7 */
   --cyan-foreground: oklch(0.99 0.004 247.9);
@@ -110,7 +110,7 @@
     150deg,
     var(--navy-deep) 0%,
     var(--navy) 55%,
-    oklch(0.32 0.09 250) 100%
+    oklch(0.638 0.162 248.3) 100%
   );
   --gradient-surface: linear-gradient(180deg, var(--background) 0%, var(--surface) 100%);
 
@@ -165,17 +165,17 @@
   --input: oklch(1 0 0 / 16%);
   --ring: oklch(0.672 0.146 250);
 
-  --navy-deep: oklch(0.155 0.032 253);
-  --navy: oklch(0.205 0.042 256);
+  --navy-deep: oklch(0.22 0.06 251);
+  --navy: oklch(0.32 0.1 251);
   --navy-foreground: oklch(0.97 0.005 247.9);
   --cyan: oklch(0.72 0.108 200);
   --cyan-foreground: oklch(0.16 0.035 253);
 
   --gradient-navy: linear-gradient(
     150deg,
-    oklch(0.145 0.03 253) 0%,
-    oklch(0.205 0.042 256) 60%,
-    oklch(0.26 0.06 250) 100%
+    oklch(0.18 0.05 251) 0%,
+    oklch(0.28 0.09 251) 60%,
+    oklch(0.38 0.13 250) 100%
   );
   --gradient-surface: linear-gradient(180deg, var(--background) 0%, var(--surface) 100%);
 
@@ -331,7 +331,7 @@
 
   .dark .site-backdrop-overlay {
     background-image: none;
-    background-color: oklch(0.176 0.036 253 / 0.7);
+    background-color: oklch(0.22 0.06 251 / 0.7);
   }
 
   /* Glass panel — the frosted-surface treatment for cards and light
@@ -372,9 +372,9 @@
     inset: 0;
     background-image: linear-gradient(
       150deg,
-      oklch(0.196 0.043 252.5 / 0.93) 0%,
-      oklch(0.264 0.062 258.4 / 0.9) 55%,
-      oklch(0.32 0.09 250 / 0.88) 100%
+      oklch(0.282 0.076 251.9 / 0.93) 0%,
+      oklch(0.568 0.167 251.3 / 0.85) 55%,
+      oklch(0.638 0.162 248.3 / 0.8) 100%
     );
     pointer-events: none;
   }
@@ -385,9 +385,9 @@
   .navy-video-overlay {
     background-image: linear-gradient(
       150deg,
-      oklch(0.196 0.043 252.5 / 0.93) 0%,
-      oklch(0.264 0.062 258.4 / 0.9) 55%,
-      oklch(0.32 0.09 250 / 0.88) 100%
+      oklch(0.282 0.076 251.9 / 0.93) 0%,
+      oklch(0.568 0.167 251.3 / 0.85) 55%,
+      oklch(0.638 0.162 248.3 / 0.8) 100%
     );
     pointer-events: none;
   }
